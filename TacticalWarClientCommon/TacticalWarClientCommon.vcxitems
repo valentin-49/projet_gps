@@ -15,8 +15,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)AbstractRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)AbstractCharacterView.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)AbstractRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)AbstractCharacterView.cpp" />
   </ItemGroup>
 </Project>
