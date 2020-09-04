@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30413.136
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWar", "TacticalWar\TacticalWar.vcxproj", "{C3F4D50F-95CC-42AD-8E36-C8ACB94D1C5B}"
 EndProject
@@ -9,8 +9,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarCommon", "Tactic
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarServer", "TacticalWarServer\TacticalWarServer.vcxproj", "{CBD4E741-A5DC-4E78-A6F0-0AF51839F95B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarClientCommon", "TacticalWarClientCommon\TacticalWarClientCommon.vcxitems", "{0CEE072F-E30B-4B2B-9796-0F36FF7DECDA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		TacticalWarClientCommon\TacticalWarClientCommon.vcxitems*{0cee072f-e30b-4b2b-9796-0f36ff7decda}*SharedItemsImports = 9
 		TacticalWarCommon\TacticalWarCommon.vcxitems*{7b36dfc2-771e-4385-a797-606d3b86e7c9}*SharedItemsImports = 9
 		TacticalWarCommon\TacticalWarCommon.vcxitems*{c3f4d50f-95cc-42ad-8e36-c8acb94d1c5b}*SharedItemsImports = 4
 		TacticalWarCommon\TacticalWarCommon.vcxitems*{cbd4e741-a5dc-4e78-a6f0-0af51839f95b}*SharedItemsImports = 4

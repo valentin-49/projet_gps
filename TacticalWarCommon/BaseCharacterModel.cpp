@@ -7,3 +7,8 @@ BaseCharacterModel::BaseCharacterModel(Environment* environment, int teamId, int
 	this->currentX = currentX;
 	this->currentY = currentY;
 }
+
+BaseCharacterModel::~BaseCharacterModel()
+{
+
+}
