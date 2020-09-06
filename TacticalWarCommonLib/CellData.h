@@ -24,9 +24,17 @@ public:
 		return isWalkable;
 	}
 
+	inline void setIsWalkable(bool isWalkable) {
+		this->isWalkable = isWalkable;
+	}
+
 	inline bool getIsObstacle()
 	{
 		return isObstacle;
+	}
+
+	inline void setIsObstacle(bool isObstacle) {
+		this->isObstacle = isObstacle;
 	}
 };
 
