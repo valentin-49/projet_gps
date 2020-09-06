@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "CharacterView.h"
 
 
@@ -8,4 +9,9 @@ sf::Sprite* CharacterView::getImageToDraw()
 	// Vous devrez également utiliser les services de la team "Colorisation" pour obtenir un personnage coloré (personnalisation des couleurs en fonction de l'équipe).
 
 	return NULL;
+}
+
+void CharacterView::update(float deltatime)
+{
+
 }

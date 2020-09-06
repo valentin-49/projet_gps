@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "CellData.h"
 
 CellData::CellData(int x, int y, bool isWalkable, bool isObstacle)

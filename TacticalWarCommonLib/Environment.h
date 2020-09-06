@@ -14,5 +14,8 @@ private:
 public:
 	Environment(int width, int height);
 	CellData* getMapData(int x, int y);
+
+	inline int getWidth() { return width; }
+	inline int getHeight() { return height; }
 };
 

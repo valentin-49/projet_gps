@@ -5,20 +5,17 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWar", "TacticalWar\TacticalWar.vcxproj", "{C3F4D50F-95CC-42AD-8E36-C8ACB94D1C5B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarCommon", "TacticalWarCommon\TacticalWarCommon.vcxitems", "{7B36DFC2-771E-4385-A797-606D3B86E7C9}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarServer", "TacticalWarServer\TacticalWarServer.vcxproj", "{CBD4E741-A5DC-4E78-A6F0-0AF51839F95B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarClientCommon", "TacticalWarClientCommon\TacticalWarClientCommon.vcxitems", "{0CEE072F-E30B-4B2B-9796-0F36FF7DECDA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IsometricRendererTestModule", "IsometricRendererTestModule\IsometricRendererTestModule.vcxproj", "{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IsometricRendererLib", "IsometricRendererLib\IsometricRendererLib.vcxproj", "{616DD023-6D4B-4E87-9F8A-A548A3E691AB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarCommonLib", "TacticalWarCommonLib\TacticalWarCommonLib.vcxproj", "{22AFCD2A-5058-44CF-8264-AD1A26272A58}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TacticalWarClientCommonLib", "TacticalWarClientCommonLib\TacticalWarClientCommonLib.vcxproj", "{B62C37FC-CDBB-4C56-A9DA-15C134509611}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		TacticalWarClientCommon\TacticalWarClientCommon.vcxitems*{0cee072f-e30b-4b2b-9796-0f36ff7decda}*SharedItemsImports = 9
-		TacticalWarCommon\TacticalWarCommon.vcxitems*{7b36dfc2-771e-4385-a797-606d3b86e7c9}*SharedItemsImports = 9
-		TacticalWarClientCommon\TacticalWarClientCommon.vcxitems*{c3f4d50f-95cc-42ad-8e36-c8acb94d1c5b}*SharedItemsImports = 4
-		TacticalWarCommon\TacticalWarCommon.vcxitems*{c3f4d50f-95cc-42ad-8e36-c8acb94d1c5b}*SharedItemsImports = 4
-		TacticalWarCommon\TacticalWarCommon.vcxitems*{cbd4e741-a5dc-4e78-a6f0-0af51839f95b}*SharedItemsImports = 4
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
@@ -42,6 +39,38 @@ Global
 		{CBD4E741-A5DC-4E78-A6F0-0AF51839F95B}.Release|x64.Build.0 = Release|x64
 		{CBD4E741-A5DC-4E78-A6F0-0AF51839F95B}.Release|x86.ActiveCfg = Release|Win32
 		{CBD4E741-A5DC-4E78-A6F0-0AF51839F95B}.Release|x86.Build.0 = Release|Win32
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Debug|x64.ActiveCfg = Debug|x64
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Debug|x64.Build.0 = Debug|x64
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Debug|x86.ActiveCfg = Debug|Win32
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Debug|x86.Build.0 = Debug|Win32
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Release|x64.ActiveCfg = Release|x64
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Release|x64.Build.0 = Release|x64
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Release|x86.ActiveCfg = Release|Win32
+		{FE9590D7-C448-4B75-92E9-23BB57CB0FEA}.Release|x86.Build.0 = Release|Win32
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Debug|x64.ActiveCfg = Debug|x64
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Debug|x64.Build.0 = Debug|x64
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Debug|x86.ActiveCfg = Debug|Win32
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Debug|x86.Build.0 = Debug|Win32
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Release|x64.ActiveCfg = Release|x64
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Release|x64.Build.0 = Release|x64
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Release|x86.ActiveCfg = Release|Win32
+		{616DD023-6D4B-4E87-9F8A-A548A3E691AB}.Release|x86.Build.0 = Release|Win32
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Debug|x64.ActiveCfg = Debug|x64
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Debug|x64.Build.0 = Debug|x64
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Debug|x86.ActiveCfg = Debug|Win32
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Debug|x86.Build.0 = Debug|Win32
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Release|x64.ActiveCfg = Release|x64
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Release|x64.Build.0 = Release|x64
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Release|x86.ActiveCfg = Release|Win32
+		{22AFCD2A-5058-44CF-8264-AD1A26272A58}.Release|x86.Build.0 = Release|Win32
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Debug|x64.ActiveCfg = Debug|x64
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Debug|x64.Build.0 = Debug|x64
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Debug|x86.ActiveCfg = Debug|Win32
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Debug|x86.Build.0 = Debug|Win32
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Release|x64.ActiveCfg = Release|x64
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Release|x64.Build.0 = Release|x64
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Release|x86.ActiveCfg = Release|Win32
+		{B62C37FC-CDBB-4C56-A9DA-15C134509611}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

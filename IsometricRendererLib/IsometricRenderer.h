@@ -4,6 +4,8 @@
 #include "Environment.h"
 #include "BaseCharacterModel.h"
 
+#include <vector>
+
 class IsometricRenderer : public AbstractRenderer
 {
 public:

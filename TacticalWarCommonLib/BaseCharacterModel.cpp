@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BaseCharacterModel.h"
 
 BaseCharacterModel::BaseCharacterModel(Environment* environment, int teamId, int currentX, int currentY)
