@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{616dd023-6d4b-4e87-9f8a-a548a3e691ab}</ProjectGuid>
     <RootNamespace>IsometricRendererLib</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -123,7 +123,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\alexg\source\repos\TacticalWar\lib\SFML-2.5.1\include;C:\Users\alexg\source\repos\TacticalWar\TacticalWarCommonLib;C:\Users\alexg\source\repos\TacticalWar\TacticalWarClientCommonLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -141,7 +141,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>C:\Users\alexg\source\repos\TacticalWar\lib\SFML-2.5.1\include;C:\Users\alexg\source\repos\TacticalWar\TacticalWarCommonLib;C:\Users\alexg\source\repos\TacticalWar\TacticalWarClientCommonLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
