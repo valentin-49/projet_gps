@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CharacterView.h"
 
+using namespace tw;
 
 sf::Sprite* CharacterView::getImageToDraw()
 {

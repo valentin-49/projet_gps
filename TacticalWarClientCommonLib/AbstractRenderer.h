@@ -2,15 +2,17 @@
 
 #include <vector>
 
-class Environment;
-class BaseCharacterModel;
-
-class AbstractRenderer
+namespace tw
 {
-public:
-	AbstractRenderer();
-	virtual ~AbstractRenderer();
+	class Environment;
+	class BaseCharacterModel;
 
-	virtual void render(Environment* environment, std::vector<BaseCharacterModel*> & characters) = 0;
-};
+	class AbstractRenderer
+	{
+	public:
+		AbstractRenderer();
+		virtual ~AbstractRenderer();
 
+		virtual void render(Environment* environment, std::vector<BaseCharacterModel*> & characters) = 0;
+	};
+}

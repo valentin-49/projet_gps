@@ -36,3 +36,22 @@
 *.app
 
 # End of https://www.toptal.com/developers/gitignore/api/c++
+
+*.log
+*.pdb
+*.metagen
+*.iobj
+*.ipdb
+*.ilk
+
+AnimationsAndSoundLib/x64/
+EnvironmentEditor/x64/
+IsometricRendererLib/x64/
+IsometricRendererTestModule/x64/
+PathfindingLib/x64/
+TacticalWar/x64/
+TacticalWarClientCommonLib/x64/
+TacticalWarCommonLib/x64/
+TacticalWarServer/x64/
+ZoneAndSightLib/x64/
+.vs/

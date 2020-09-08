@@ -1,7 +1,10 @@
 #pragma once
 
-class AttackDetails
+namespace tw
 {
-	
-};
+	class AttackDetails
+	{
+
+	};
+}
 

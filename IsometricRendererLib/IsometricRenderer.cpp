@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+using namespace tw;
+
 IsometricRenderer::IsometricRenderer(sf::RenderWindow * window)
 {
 	this->window = window;

@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Environment.h"
 
+using namespace tw;
+
 Environment::Environment(int width, int height)
 {
 	this->width = width;
