@@ -1,4 +1,8 @@
 <?php require("user.php");?>
+<?php
+session_start();
+$_SESSION["isconnectUS"]=false;
+?>
 <html>
     <head>
         <title>Le GPS du bled</title>
@@ -7,10 +11,7 @@
         <link rel="stylesheet" type="text/css" href="index.css">
         <link rel="shortcut icon" href="image/unnamed.png" />
     </head>
-<?php
-session_start();
-$_SESSION["isconnectUS"]=false;
-?>
+
     <body>
             <div class="container">
                 <div class="row">
@@ -78,7 +79,7 @@ $_SESSION["isconnectUS"]=false;
                                         <div class="col-6" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='../page_recherche/page_recherche.php'" class="bouton_redirect"/></p></div>
                                         <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
                                     </div>
-                                        <div class="col-12" align="center"><p><input type="button" name="Valider" value="deconnexion" onclick="self.location.href='../page_recherche/page_recherche.php'" class="bouton_redirect"/></p></div>
+                                        <div class="col-12" align="center"><p><input type="button" name="Valider" value="deconnexion" onclick="self.location.href='deco.php'" class="bouton_redirect"/></p></div>
                                 </div>
                             <?php      
                         }
