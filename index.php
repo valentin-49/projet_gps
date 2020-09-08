@@ -1,8 +1,8 @@
-<?php require("user.php");?>
 <?php
 session_start();
-$_SESSION["isconnectUS"]=false;
+if (isset($_SESSION["isconnectUS"]));
 ?>
+<?php require("user.php");?>
 <html>
     <head>
         <title>Le GPS du bled</title>
@@ -33,21 +33,21 @@ $_SESSION["isconnectUS"]=false;
                             <p><input type="submit" name="Valider" value="Valider" class="bouton"/></p>
                         </form>
                     <?php
-                       if(empty($_POST['ID_1']) && empty($_POST['MDP_1'])){
+                    if(empty($_POST['ID_1']) && empty($_POST['MDP_1'])){
 
-                    }else{
-                    
-                    $user = new user();
-                    $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                    if($_SESSION["isconnectUS"]){
+                        }else{
+                        
+                        $user = new user();
+                        $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                        if($_SESSION["isconnectUS"]){
 
-                        echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
-                        $_SESSION["isconnectUS"]=true;
+                            echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
+                            $_SESSION["isconnectUS"]=true;
 
-                    }else{ //meesage d'erreur si les Id et Mdp sont incorrects
-                            
-                        echo"<p><h3>Identifiants ou mot de passe incorrects, veuillez reessayer.</h3></p>";
-                    }
+                        }else{ //meesage d'erreur si les Id et Mdp sont incorrects
+                                
+                            echo"<p><h3>Identifiants ou mot de passe incorrects, veuillez reessayer.</h3></p>";
+                        }
                     }
                     ?>
                     </div>
@@ -72,11 +72,11 @@ $_SESSION["isconnectUS"]=false;
                             ?>
                                 <div class="col-12 redirection" align="center">
                                     <div class="row">
-                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href='../page_recherche/page_recherche.php'" class="bouton_redirect"/></p></div>                                      
-                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='../page_recherche/page_recherche.php'" class="bouton_redirect"/></p></div>
+                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href='acces_mon_compte/compte.php'" class="bouton_redirect"/></p></div>                                      
+                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='acces_donnee/data.php'" class="bouton_redirect"/></p></div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-6" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='../page_recherche/page_recherche.php'" class="bouton_redirect"/></p></div>
+                                        <div class="col-6" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='position_bateaux/traceur.php'" class="bouton_redirect"/></p></div>
                                         <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
                                     </div>
                                         <div class="col-12" align="center"><p><input type="button" name="Valider" value="deconnexion" onclick="self.location.href='deco.php'" class="bouton_redirect"/></p></div>
