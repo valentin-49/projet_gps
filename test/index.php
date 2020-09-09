@@ -138,9 +138,8 @@ if($_SESSION["isconnectUS"]==false){
                                     </div>
                                         <div class="col-12" align="center"><p><input type="submit" name="deco" value="deconnexion" class="bouton_redirect"/></p>
                                     <?php
-                                        $_SESSION = array();
                                         session_destroy();
-                                        header ('location: index.html');
+                                        header('location: index.php');
                                     ?>
                                     
                                         </div>
