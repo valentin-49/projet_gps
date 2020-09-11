@@ -37,12 +37,30 @@ void IsometricRenderer::manageEvents(Environment * environment, std::vector<Base
 				int cellX = x / 64;
 				int cellY = y / 64;
 
-				notifyCellClicked(cellX, cellY);
+				if (cellX >= 0 && cellX < environment->getWidth()
+					&&
+					cellY >= 0 && cellY < environment->getHeight())
+				{
+					notifyCellClicked(cellX, cellY);
+				}
 			}
 			break;
 			// we don't process other types of events
 		default:
 			break;
+		}
+	}
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		sf::Vector2i position = sf::Mouse::getPosition(*window);
+		int cellX = position.x / 64;
+		int cellY = position.y / 64;
+		if (cellX >= 0 && cellX < environment->getWidth()
+			&&
+			cellY >= 0 && cellY < environment->getHeight())
+		{
+			notifyCellMouseDown(cellX, cellY);
 		}
 	}
 }

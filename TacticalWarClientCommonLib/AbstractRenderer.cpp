@@ -28,6 +28,14 @@ void AbstractRenderer::notifyCellHover(int x, int y)
 	}
 }
 
+void AbstractRenderer::notifyCellMouseDown(int x, int y)
+{
+	for (int i = 0; i < listeners.size(); i++)
+	{
+		listeners[i]->onCellMouseDown(x, y);
+	}
+}
+
 void AbstractRenderer::addEventListener(RendererEventListener * listener)
 {
 	std::vector<RendererEventListener*>::iterator it;

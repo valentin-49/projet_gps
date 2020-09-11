@@ -15,6 +15,7 @@ namespace tw
 	protected:
 		void notifyCellClicked(int x, int y);
 		void notifyCellHover(int x, int y);
+		void notifyCellMouseDown(int x, int y);
 
 	public:
 		AbstractRenderer();

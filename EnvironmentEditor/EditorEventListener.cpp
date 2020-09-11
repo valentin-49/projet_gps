@@ -16,11 +16,17 @@ EditorEventListener::~EditorEventListener()
 
 void EditorEventListener::onCellClicked(int x, int y)
 {	
-	std::cout << "Clic sur [" << x << ";" << y << "]" << std::endl;
+	// Clic sur la cellule X;Y indique à l'éditeur 
+	// qu'il faut modifier l'environnement à cette position
 	hmi->editCell(x, y);
 }
 
 void EditorEventListener::onCellHover(int x, int y)
 {
 
+}
+
+void EditorEventListener::onCellMouseDown(int x, int y)
+{
+	hmi->editCell(x, y);
 }

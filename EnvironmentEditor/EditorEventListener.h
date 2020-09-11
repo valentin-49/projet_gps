@@ -14,5 +14,6 @@ namespace EnvironmentEditor
 
 		virtual void onCellClicked(int x, int y);
 		virtual void onCellHover(int x, int y);
+		virtual void onCellMouseDown(int x, int y);
 	};
 }
