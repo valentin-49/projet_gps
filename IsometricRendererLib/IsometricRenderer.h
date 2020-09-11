@@ -13,6 +13,8 @@ namespace tw
 	{
 		sf::RenderWindow * window;
 
+		void manageEvents(Environment * environment, std::vector<BaseCharacterModel*> & characters);
+
 	public:
 		IsometricRenderer(sf::RenderWindow * window);
 		virtual void render(Environment* environment, std::vector<BaseCharacterModel*> & characters);

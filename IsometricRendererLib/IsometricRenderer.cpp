@@ -10,8 +10,46 @@ IsometricRenderer::IsometricRenderer(sf::RenderWindow * window)
 	this->window = window;
 }
 
+void IsometricRenderer::manageEvents(Environment * environment, std::vector<BaseCharacterModel*> & characters)
+{
+	sf::Event e;
+	while (window->pollEvent(e))
+	{
+		// check the type of the event...
+		switch (e.type)
+		{
+			// window closed
+		case sf::Event::Closed:
+			window->close();
+			break;
+
+			// key pressed
+		case sf::Event::KeyPressed:
+			
+			break;
+
+		case sf::Event::MouseButtonPressed:
+			if (e.mouseButton.button == sf::Mouse::Left)
+			{
+				int x = e.mouseButton.x;
+				int y = e.mouseButton.y;
+
+				int cellX = x / 64;
+				int cellY = y / 64;
+
+				notifyCellClicked(cellX, cellY);
+			}
+			break;
+			// we don't process other types of events
+		default:
+			break;
+		}
+	}
+}
+
 void IsometricRenderer::render(Environment* environment, std::vector<BaseCharacterModel*> & characters)
 {
+	manageEvents(environment, characters);
 	// TODO (team "Rendu graphique") : Réaliser le code de dessin de l'environnement (la map) et des personnages dans un repère isométrique.
 	// Vous devrez calculer la position des tuiles à l'écran en fonction de leur position dans la grille (dans le tableau 2D)
 

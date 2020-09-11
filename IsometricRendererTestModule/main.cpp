@@ -6,6 +6,8 @@
 #include <IsometricRenderer.h>
 #include <SFML/Graphics.hpp>
 
+using namespace tw;
+
 int main(int argc, char** argv)
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Isometric renderer test module");
