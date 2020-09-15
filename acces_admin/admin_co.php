@@ -1,8 +1,8 @@
 <?php
-class user{
+class admin{
     //propriétes:
-    private $_user ="root";
-    private $_passwd="root";
+    private $_user ="admin";
+    private $_passwd="admin";
     
 
     //méthodes:

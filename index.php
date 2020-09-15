@@ -18,7 +18,7 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
 ?>
  <html>
                         <head>
-                            <title>Le GPS du bled</title>
+                            <title>GeoGuessBoat</title>
                             <meta charset="utf-8">
                             <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1-dist/css/bootstrap.css">
                             <link rel="stylesheet" type="text/css" href="index.css">
@@ -83,7 +83,7 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
             <div class="container">
                 <div class="row">
                     <div class="col-12 en-tete" align="center">
-                        <h1>Le GPS du bled</h1>
+                        <h1>GeoGuessBoat</h1>
                     </div>
                     <div class="col-4" align="center">
                         
@@ -113,9 +113,9 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
 
                     }else{
                     
-                        $user = new user();
-                        $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                        if($_SESSION["isconnectUS"]){
+                    $user = new user();
+                    $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                    if($_SESSION["isconnectUS"]){
 
                         echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
                         $_SESSION["isconnectUS"]=true;
@@ -176,3 +176,11 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
 </html>
 
 
+<!-- $user = new user();
+                        $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                        if($_SESSION["isconnectUS"]){
+
+$user = new user();
+                    $user->connexion($_POST['ID_1'] , $_POST['MDP_1']);
+                    $isconnectUS = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                    if($isconnectUS){

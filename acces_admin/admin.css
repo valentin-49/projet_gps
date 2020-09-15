@@ -1,0 +1,46 @@
+html {height:100%;}
+body {height:100%;
+padding: 0%; margin: 0.25%;
+width: auto;
+height: auto;
+color: crimson;
+background-color: black;
+background-image: url(../image/Earth-view-of-the-cosmos-Hd-wallpaper.jpg);
+background-size: cover;
+background-position-x: center;
+}
+
+.en-tete{
+    background-color: whitesmoke;
+    border-radius: 20%;
+    margin-top: 2%;
+}
+.formulaire_de_connexion{
+    margin-top: 5%;
+    background-color: whitesmoke;
+    border-radius: 10%;
+    border-color: black;
+    border-style: double;
+    height: auto;
+    width: auto;  
+}
+.bouton-deco{
+    margin-top: 50%;
+    border-radius: 11%;
+    width: auto;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+    border-style: double;
+    border-color: black;
+}
+.bouton{
+    margin-top: 5%;
+    border-radius: 11%;
+    width: auto;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+    border-style: double;
+    border-color: black;
+}
