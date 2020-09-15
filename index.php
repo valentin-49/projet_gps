@@ -12,7 +12,7 @@ session_start();
  } if(isset($_POST['deco'])){
     session_unset();
     session_destroy();
-       
+
 }  
 if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
 ?>
@@ -103,9 +103,10 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
 
                     }else{
                     
-                    $user = new user();
-                    $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                    if($_SESSION["isconnectUS"]){
+                     $user = new user();
+                    $user->Connexion($_POST['ID_1'] , $_POST['MDP_1']);
+                    $isconnectUS = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                    if($isconnectUS){
 
                         echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
                         $_SESSION["isconnectUS"]=true;
