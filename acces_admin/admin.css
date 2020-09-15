@@ -25,7 +25,7 @@ background-position-x: center;
     width: auto;  
 }
 .bouton-deco{
-    margin-top: 50%;
+    margin-top: 35%;
     border-radius: 11%;
     width: auto;
     height: 50px;
@@ -43,4 +43,20 @@ background-position-x: center;
     font-weight: bold;
     border-style: double;
     border-color: black;
+}
+.text{
+    margin-top: 1%;
+    width: 60%;
+    border-color: black;
+    border-style: double;
+}
+.admin-png{
+
+    margin-top: 5%;
+    background-image: url(../image/Screenshot_admin.png);
+    background-size: cover;
+    background-position-x: center;
+    border-radius: 10%;
+    border-color: black;
+    border-style: double;
 }

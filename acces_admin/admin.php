@@ -25,35 +25,36 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
                         <h1>Page Admin</h1>
                     </div>
                     <form method="POST" class="col-2"><p><input type="submit" name="deco" value="Deconnexion" class="bouton-deco"/></p></form>
-                    <div class="col-1"></div>
-                    <div class="col-6 formulaire_de_connexion" align="center">
-                        <form action="admin.php" method="$_POST">
-                            <label><h3>Se Connecter en tant qu'admin</h3></label>
-                                <p><input type="text" name="ID_1" width="auto" class="text" required/></p>
-                                <label><h3>Mot De Passe</h3></label>
-                                <p><input type="password" name="MDP_1" class="text" required/></p>
-                                <p><input type="submit" name="Valider" value="Valider" class="bouton"/></p>
-                            <?php
-                            if(empty($_POST['ID_1']) && empty($_POST['MDP_1'])){
+                    <div class="col-1"></div>    
+                        <div class="col-6 formulaire_de_connexion" align="center">
+                            <form action="admin.php" method="$_POST">
+                                <label><h3>Se Connecter en tant qu'admin</h3></label>
+                                    <p><input type="text" name="ID_1" width="auto" class="text" required/></p>
+                                    <label><h3>Mot De Passe</h3></label>
+                                    <p><input type="password" name="MDP_1" class="text" required/></p>
+                                    <p><input type="submit" name="Valider" value="Valider" class="bouton"/></p>
+                                </form>
+                                <?php
+                                if(empty($_POST['ID_1']) && empty($_POST['MDP_1'])){
 
-                            }else{
-                            
-                            $user = new admin();
-                            $_SESSION["isconnectad"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                            if($_SESSION["isconnectad"]){
-        
-                                echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
-                                $_SESSION["isconnectad"]=true;
-        
-                            }else{ //meesage d'erreur si les Id et Mdp sont incorrects   
-        
-                                echo"<p><h3>Identifiants ou mot de passe incorrects, veuillez reessayer.</h3></p>";
-                            }
+                                }else{
+                                
+                                $admin = new admin();
+                                $_SESSION["isconnectad"] = $admin->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                                if($_SESSION["isconnectad"]){
+            
+                                    echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
+                                    $_SESSION["isconnectad"]=true;
+            
+                                }else{ //meesage d'erreur si les Id et Mdp sont incorrects   
+            
+                                    echo"<p><h3>Identifiants ou mot de passe incorrects, veuillez reessayer.</h3></p>";
+                                }
                             }
                             ?>
-                        </form>
-                    </div>
-                    <div class="col-3"></div>
+                        </div>
+                    <div class="col-1"></div>
+                    <div class="col-2 admin-png"></div>
                 </div>
             </div>
         </body>
