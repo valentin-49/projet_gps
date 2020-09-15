@@ -1,13 +1,73 @@
 <?php
 session_start();
-$_SESSION["isconnectUS"];
-if(isset($_SESSION["isconnectUS"])){
-    echo"coucou";
-};
+//$_SESSION["isconnectUS"];
+
 ?> 
 <?php require("../user.php");?>
 <?php
-if($_SESSION["isconnectUS"]==false){
+ if(isset($_POST['deco2'])){
+    session_unset();
+    session_destroy();
+
+ }elseif(isset($_POST['deco'])){
+    session_unset();
+    session_destroy();
+   
+}
+if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
+?>
+ <html>
+                        <head>
+                            <title>Le GPS du bled</title>
+                            <meta charset="utf-8">
+                            <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1-dist/css/bootstrap.css">
+                            <link rel="stylesheet" type="text/css" href="index.css">
+                            <link rel="shortcut icon" href="image/unnamed.png" />
+                        </head>
+                    
+                        <body>
+                            <div class="row">
+                                        <div class="col-12">
+                                            
+                                            </div>
+                                        <div class="col-2 " align="center">
+                                                
+                                            </div>
+                                        <div class="col-8" align="center">
+                                            <?php
+                    
+                                            if($_SESSION["isconnectUS"]){
+                                                ?>
+                                                    <div class="col-12 redirection" align="center">
+                                                    <form action="index.php" method="POST">
+                                                        <div class="row">
+                                                            <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href=''" class="bouton_redirect"/></p></div>                                      
+                                                            <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='acces_donnee/data.php'" class="bouton_redirect"/></p></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='position_bateaux/traceur.php'" class="bouton_redirect"/></p></div>
+                                                            <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
+                                                        </div>
+                                                            <div class="col-12" align="center"><form method="POST"><p><input type="submit" name="deco2" value="deconnexion" class="bouton_redirect"/></p></form>
+                                                        
+                                                        </div>
+                                                    </form>
+                                                    </div>
+                                                <?php      
+                                            }
+                                            ?>
+                                            </div>
+                                        <div class="col-2 " align="center">
+                                                
+                                                </div>
+                                    </div>
+                                </div>
+                        </body>
+                    </html>
+<?php 
+
+}elseif(!isset($_SESSION["isconnectUS"]) || $_SESSION["isconnectUS"]==false ){
+
 ?>
 <html>
     <head>
@@ -75,9 +135,10 @@ if($_SESSION["isconnectUS"]==false){
                     <div class="col-8" align="center">
                         <?php
 
-                        if($_SESSION["isconnectUS"]==true){
+                        if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
                             ?>
                                 <div class="col-12 redirection" align="center">
+                                <form action="index.php" method="POST">
                                     <div class="row">
                                         <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href=''" class="bouton_redirect"/></p></div>                                      
                                         <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='acces_donnee/data.php'" class="bouton_redirect"/></p></div>
@@ -87,62 +148,8 @@ if($_SESSION["isconnectUS"]==false){
                                         <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
                                     </div>
                                         <div class="col-12" align="center"><p><input type="button" name="deco" value="deconnexion" class="bouton_redirect"/></p></div>
-            
-                                    </div>
-                            <?php      
-                        }
-                        ?>
-                        </div>
-                    <div class="col-2 " align="center">
-                            
-                            </div>
-                </div>
-            </div>
-    </body>
-</html>
-<?php 
-
-}elseif($_SESSION["isconnectUS"]==true){
-
-?>
-<html>
-    <head>
-        <title>Le GPS du bled</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="index.css">
-        <link rel="shortcut icon" href="image/unnamed.png" />
-    </head>
-
-    <body>
-        <div class="row">
-                    <div class="col-12">
-                        
-                        </div>
-                    <div class="col-2 " align="center">
-                            
-                        </div>
-                    <div class="col-8" align="center">
-                        <?php
-
-                        if($_SESSION["isconnectUS"]){
-                            ?>
-                                <div class="col-12 redirection" align="center">
-                                    <div class="row">
-                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href=''" class="bouton_redirect"/></p></div>                                      
-                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='acces_donnee/data.php'" class="bouton_redirect"/></p></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='position_bateaux/traceur.php'" class="bouton_redirect"/></p></div>
-                                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
-                                    </div>
-                                        <div class="col-12" align="center"><p><input type="submit" name="deco" value="deconnexion" class="bouton_redirect"/></p>
-                                    <?php
-                                        session_destroy();
-                                        header('location: index.php');
-                                    ?>
-                                    
-                                        </div>
+                                       
+                                    </form>
                                 </div>
                             <?php      
                         }
@@ -157,6 +164,7 @@ if($_SESSION["isconnectUS"]==false){
 </html>
 
 <?php
-                        }
+    }
 
-                
+                       
+               

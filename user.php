@@ -15,8 +15,8 @@ class user{
             charset=utf8','root', '');
             $LesNVusers=$maBase->query('SELECT `ID`,`Mot_de_passe` FROM `Users` WHERE "'.$NDC.'"=`ID` && "'.$MDP.'"=`Mot_de_passe');
             $admin = $LesNVusers->fetch();
-            $this->_nom = $admin['ID'];
-            $this->_MDP = $admin['Mot_de_passe'];
+            $this->_user = $admin['ID'];
+            $this->_passwd = $admin['Mot_de_passe'];
         }    
 
             catch (Exception $erreur){
