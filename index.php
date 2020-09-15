@@ -76,13 +76,23 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
         <link rel="stylesheet" type="text/css" href="bootstrap-4.4.1-dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="index.css">
         <link rel="shortcut icon" href="image/unnamed.png" />
+        <script type="text/javascript" src="index.js"></script>
     </head>
 
-    <body>
+    <body onload="heure()">
             <div class="container">
                 <div class="row">
                     <div class="col-12 en-tete" align="center">
                         <h1>Le GPS du bled</h1>
+                    </div>
+                    <div class="col-4" align="center">
+                        
+                    </div>
+                    <div class="col-4 en-tete " align="center">
+                        <h2 id="time" style="text-decoration: underline;"></h2>
+                    </div>
+                    <div class="col-4" align="center">
+                        
                     </div>
                     <div class="col-2 coterG" align="center">
                         
@@ -103,10 +113,9 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true){
 
                     }else{
                     
-                     $user = new user();
-                    $user->Connexion($_POST['ID_1'] , $_POST['MDP_1']);
-                    $isconnectUS = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                    if($isconnectUS){
+                        $user = new user();
+                        $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
+                        if($_SESSION["isconnectUS"]){
 
                         echo"<p><h3>Connexion à la BDD effectuer</h3></p>";
                         $_SESSION["isconnectUS"]=true;

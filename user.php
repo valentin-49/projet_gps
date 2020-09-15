@@ -1,13 +1,13 @@
 <?php
 class user{
     //propriétes:
-    private $_user;
-    private $_passwd;
+    private $_user ="root";
+    private $_passwd = "root";
     
 
     //méthodes:
    
-public function Connexion($NDC, $MDP){//Fonction qui permet au utilisateur de se connecter
+/*public function Connexion($NDC, $MDP){//Fonction qui permet au utilisateur de se connecter
 
     try
         {
@@ -23,7 +23,7 @@ public function Connexion($NDC, $MDP){//Fonction qui permet au utilisateur de se
                 echo 'Erreur : '.$erreur ->getMessage();
         }
 }
-
+*/
 public function Compar_passwd($NDC, $MDP){ //compare les id et mdp 
     if($NDC == $this->_user){
         if($MDP == $this->_passwd){
