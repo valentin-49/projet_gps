@@ -1,8 +1,10 @@
 <?php
 class user{
     //propriétes:
-    private $_user ="root";
+    private $_user ="root";  //log et mot de passe de co pour la page d'acceuil
     private $_passwd="root";
+
+    private $_admin =true; //false = Non-admin , tru=admin
     
 
     //méthodes:
@@ -30,5 +32,10 @@ public function Compar_passwd($NDC, $MDP){ //compare les id et mdp
         }
     }
     return false;
+}
+
+public function isAdmin(){ //verifie si c un admin
+    
+    return $this->_admin;
 }
 }

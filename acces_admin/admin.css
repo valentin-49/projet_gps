@@ -11,8 +11,10 @@ background-position-x: center;
 }
 
 .en-tete{
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
     border-radius: 20%;
+    border-color: crimson;
+    border-style: double;
     margin-top: 2%;
 }
 .formulaire_de_connexion{
@@ -25,10 +27,7 @@ background-position-x: center;
     width: auto;  
 }
 .bouton-deco{
-    margin-top: 35%;
     border-radius: 11%;
-    width: auto;
-    height: 50px;
     background-color: rgb(255, 255, 255);
     font-weight: bold;
     border-style: double;
@@ -59,4 +58,22 @@ background-position-x: center;
     border-radius: 10%;
     border-color: black;
     border-style: double;
+}
+.update{
+    margin-top: 10%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15%;
+    border-color: crimson;
+    border-style: double;
+    width: auto;
+    height: auto;
+}
+.delete{
+    margin-top: 10%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15%;
+    border-color: crimson;
+    border-style: double;
+    width: auto;
+    height: auto;
 }

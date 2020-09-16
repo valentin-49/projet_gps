@@ -7,7 +7,7 @@ class admin{
 
     //méthodes:
    
-/*public function Connexion($NDC, $MDP){//Fonction qui permet au utilisateur de se connecter
+/*public function Connexion($NDC, $MDP){//Fonction qui permet au admin de se connecter
 
     try
         {
