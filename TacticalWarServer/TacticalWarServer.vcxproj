@@ -138,7 +138,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClientState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="TWParser.cpp" />
+    <ClCompile Include="TcpServer.cpp" />
+    <ClCompile Include="ThreadSafeQueue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ClientState.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="TWParser.h" />
+    <ClInclude Include="TcpServer.h" />
+    <ClInclude Include="ThreadSafeQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
