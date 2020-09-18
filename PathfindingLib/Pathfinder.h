@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <Environment.h>
+#include <Obstacle.h>
 
 namespace tw
 {
@@ -53,6 +54,6 @@ namespace tw
 		static Pathfinder * getInstance();
 
 		Orientation getOrientationFromPosition(Position p1, Position p2);
-		std::vector<Position> getPath(Position startPosition, Position endPosition, Environment * environment);
+		std::vector<Position> getPath(Position startPosition, Position endPosition, Environment * environment, std::vector<Obstacle*> obstacles);
 	};
 }

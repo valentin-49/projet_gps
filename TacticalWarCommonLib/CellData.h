@@ -1,26 +1,17 @@
 #pragma once
+#include "Point2D.h"
 
 namespace tw
 {
-	class CellData
+	class CellData : public Point2D
 	{
 	private:
-		int x;
-		int y;
-
 		bool isWalkable;
 		bool isObstacle;
 
 	public:
 		CellData(int x, int y, bool isWalkable = true, bool isObstacle = false);
 
-		inline int getX() {
-			return x;
-		}
-
-		inline int getY() {
-			return y;
-		}
 
 		inline bool getIsWalkable()
 		{
