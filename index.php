@@ -9,12 +9,15 @@ session_start();
     }else{
                     
         $user = new user();
+        $user->Connexion($_POST['ID_1'],$_POST['MDP_1']);
         $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-        $_SESSION["isconnectAD"] = $user->isAdmin();
+        $_SESSION["isconnectAD"] = $user->compar_admin($_POST['ID_1'],$_POST['MDP_1']);
        
         if($_SESSION["isconnectUS"]){
 
-        $_SESSION["isconnectUS"]=true; //passe la variable isconnectUS a true ce qui permet de rentrer dans la condition 1 et de faire disparaitre le formulaire 
+        $_SESSION["isconnectUS"]=true;
+        $_SESSION["LogUser"]=$_POST['ID_1'];
+        $_SESSION["MdpUser"]=$_POST['MDP_1']; //passe la variable isconnectUS a true ce qui permet de rentrer dans la condition 1 et de faire disparaitre le formulaire 
 
     }elseif($_SESSION["isconnectAD"]){ //message d'erreur si les Id et Mdp sont incorrects
                             
@@ -25,6 +28,16 @@ session_start();
         }
     }
 ?>
+<?php 
+    if(empty($_POST['new_ID']) && empty($_POST['new_MDP'])){
+
+    }else{
+
+        $user = new user();
+        $user->UsersNv($_POST['new_ID'] , $_POST['new_MDP']);
+        echo"<p><h3>nouvelle utilisateur creer veuillez rentrer a nouveau vos identifiants.</h3></p>";
+    }
+?>  
 <?php
  if(isset($_POST['deco2'])){ //bouton de deconnexion qui retourne à la condition 2
     session_unset();
@@ -117,36 +130,52 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                         <h1>GeoGuessBoat</h1>
                     </div>
                     <div class="col-4" align="center">
-                        
                     </div>
                     <div class="col-4 en-tete " align="center">
                         <h2 id="time" style="text-decoration: underline;"></h2>
                     </div>
-                    <div class="col-4" align="center">
-                        
+                    <div class="col-4" align="center"></div>
+                    <div class="col-5 en-tete" align="center">
+                        <form method="POST"><input type="submit" name="connect" value="Me connecter" class="bouton"/></form>
                     </div>
-                    <div class="col-2 coterG" align="center">
-                        
-                    </div>
-                    <div class="col-1" align="center">
-                        
-                    </div>
-                    <div class="col-6 formulaire_de_connexion" align="center"><!-- formulaire de connexion -->
+                    <div class="col-2"></div>
+                    <div class="col-5 en-tete" align="center">
+                        <form method="POST"><input type="submit" name="insert" value="M'inscrire" class="bouton"/></form>
+                    </div> 
+                </div> 
+                <?php
+                    if(isset($_POST['connect'])){ 
+                    ?>
+                        <div class="col-12 formulaire_de_connexion" align="center">
                         <form action="index.php" method="POST">
                             <label><h3>Se Connecter</h3></label>
-                            <p><input type="text" value="root" name="ID_1" width="auto" class="text" required/></p>
+                            <p><input type="text" value="" name="ID_1" width="auto" class="text" required/></p>
                             <label><h3>Mot De Passe</h3></label>
-                            <p><input type="password" value="root" name="MDP_1" class="text" required/></p>
+                            <p><input type="password" value="" name="MDP_1" class="text" required/></p>
                             <p><input type="submit" name="Valider" value="Valider" class="bouton"/></p>
                         </form>
                     </div>
-                    <div class="col-1" align="center">
-                        
+                <?php 
+                    }
+                    elseif(isset($_POST['insert'])){ 
+                ?> 
+                    <div class="col-12 formulaire_de_connexion" align="center">
+                    <h1>S'inscrire</h1>
+                        <form action="index.php" method="POST">
+                            <label><h3>pseudo</h3></label>
+                            <p><input type="text" value="" name="new_ID" width="auto" class="text" required/></p>
+                            <label><h3>Mot De Passe</h3></label>
+                            <p><input type="password" value="" name="new_MDP" class="text" required/></p>
+                            <p><input type="submit" name="Valider" value="Valider" class="bouton"/></p>
+                        </form>
                     </div>
-                    <div class="col-2 coterDr" align="center">
-                        
-                    </div>         
-                </div> 
+                <?php 
+                    }
+                ?> 
+                <div class="row">
+                    <div class="col-12 image" align="center">
+                    </div>  
+                </div>
             </div>  
     </body>
 </html>
@@ -188,7 +217,8 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                 
                 <form action="index.php" method="POST">
                     <div class="row">
-                        <div class="col-12" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
+                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href='acces_mon_compte/compte.php'" class="bouton_redirect"/></p></div>
+                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accées administrateur" onclick="self.location.href='acces_admin/admin.php'" class="bouton_redirect"/></p></div>
                     </div>
                         <div class="col-12" align="center"><form method="POST"><p><input type="submit" name="deco2" value="deconnexion" class="bouton_redirect"/></p></form>
                     
@@ -211,12 +241,3 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
 }
 ?>
 
-<!-- $user = new user();
-                        $_SESSION["isconnectUS"] = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                        if($_SESSION["isconnectUS"]){
-
-$user = new user();
-                    $user->connexion($_POST['ID_1'] , $_POST['MDP_1']);
-                    $isconnectUS = $user->Compar_passwd($_POST['ID_1'],$_POST['MDP_1']);
-                    if($isconnectUS){
-                        

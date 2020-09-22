@@ -5,7 +5,7 @@ session_start();
 <?php require("admin_co.php");?>
 
 <?php
-if(isset($_POST['deco2'])){ //bouton de deconnexion qui retourne à la dondition 2
+if(isset($_POST['deco2'])){ 
     session_unset();
     session_destroy();
 }
@@ -40,17 +40,17 @@ if(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true){
             </div>
 
             <?php
-                    if(isset($_POST['modif'])){ //bouton de deconnexion qui retourne à la dondition 2
+                    if(isset($_POST['modif'])){ 
                     ?>
                     <div class="col-12" align="center">
                     <div id="gestion2"> <!-- affichage de la partie delete -->
                         <?php
-                                
+                            $user = new admin();
+                            $user->Select_User();
                         ?>
-                    
                     <?php
                     }
-                    if(isset($_POST['supp'])){ //bouton de deconnexion qui retourne à la dondition 2
+                    if(isset($_POST['supp'])){ 
                         ?>
                     <div class="container">
                         <div class="row">
@@ -70,7 +70,7 @@ if(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true){
 ?>
 <html>
     <head>
-        <script type="text/javascript" src="../admin.js"></script>
+        <script type="text/javascript" src="admin.js"></script>
         <link rel="stylesheet" type="text/css" href="../bootstrap-4.4.1-dist/css/bootstrap.css">
     </head>
     <body onload="redirect()">

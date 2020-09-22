@@ -1,32 +1,44 @@
 <?php
 class user{
     //propriétes:
-    private $_user ="root";  //log et mot de passe de co pour la page d'acceuil
-    private $_passwd="root";
+    private $_user;  //log et mot de passe de co pour la page d'acceuil
+    private $_passwd;
 
-    private $_admin =false; //false=Non-admin , true=admin
-    // private $_logadmin;
-
+    private $_admin; //false=Non-admin , true=admin
+    
 
     //méthodes:
    
-/*public function Connexion($NDC, $MDP){//Fonction qui permet au utilisateur de se connecter
+public function Connexion($NDC, $MDP){//Fonction qui permet au utilisateur de se connecter
 
     try
         {
-            $maBase=new PDO('mysql:host="localhost"; dbname="user_projet_radar"; charset=utf8','root','root');
-            $LesNVusers=$maBase->query('SELECT `User`,`Mdp`,`admin` FROM `user` WHERE "'.$NDC.'"=`user` && "'.$MDP.'"=`Mdp');
-            $admin = $LesNVusers->fetch();
+            $maBase=new PDO('mysql:host=localhost; dbname=projet_gps; charset=utf8','root','');
+            $LesUsers = $maBase->query('SELECT `user`,`MDP`,`admin` FROM `user` WHERE "'.$NDC.'"=`user` AND "'.$MDP.'"=`MDP`');
+            $admin = $LesUsers->fetch();
             $this->_user = $admin['user'];
-            $this->_passwd = $admin['Mdp'];
-            $this->_admin = $admin[`admin`];
+            $this->_passwd = $admin['MDP'];
+            $this->_admin = $admin['admin'];
         }    
 
             catch (Exception $erreur){
                 echo 'Erreur : '.$erreur ->getMessage();
         }
 }
-*/
+public function UsersNv($NDC, $MDP){//Fonction qui creer un nouvelle utiliateur
+
+    try
+    {
+        $maBase=new PDO('mysql:host=localhost; dbname=projet_gps; charset=utf8','root','');
+        $LesNVusers=$maBase->query('INSERT INTO `user`(`user`, `MDP`) VALUES ("'.$NDC.'","'.$MDP.'")') ;
+    }    
+
+        catch (Exception $erreur){
+            echo 'Erreur : '.$erreur ->getMessage();
+    }
+    
+}
+
 public function Compar_passwd($NDC, $MDP){ //compare les id et mdp 
     if($NDC == $this->_user){
         if($MDP == $this->_passwd){
@@ -35,14 +47,11 @@ public function Compar_passwd($NDC, $MDP){ //compare les id et mdp
     }
     return false;
 }
-/*public function compar_admin(){
-    if(($this->_admin)==1){
-        $_logadmin = true;
+public function compar_admin(){
+    if($this->_admin==1){
+        return true;
     }
-   
-}*/
-public function isAdmin(){ //verifie si c un admin
-    
-    return $this->_admin;
+    return false;  
 }
+
 }

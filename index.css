@@ -50,23 +50,17 @@ background-position-x: center;
     border-color: black;
     border-style: double;
 }
-.coterDr{
+
+.image{
     border-radius: 5%;
-    background-image: url(image/boat.jpg);
-    margin-top: 5%;
-    background-size: cover;
-    background-position-x: center;
-    border-color: rgb(0, 0, 0);
-    border-style: double;
-}
-.coterG{
-    border-radius: 5%;
-    background-image: url(image/Hatteras-Yachts-gt59-wallpaper.jpg);
+    background-image: url(image/1.jpg);
     margin-top: 5%;
     background-size: cover;
     background-position-x: center;  
     border-color: rgb(0, 0, 0);
     border-style: double;
+    width: 852px;
+    height: 480px;
 }
 
 .redirection{
