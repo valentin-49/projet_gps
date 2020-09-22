@@ -35,7 +35,7 @@ session_start();
 
         $user = new user();
         $user->UsersNv($_POST['new_ID'] , $_POST['new_MDP']);
-        echo"<p><h3>nouvelle utilisateur creer veuillez rentrer a nouveau vos identifiants.</h3></p>";
+
     }
 ?>  
 <?php
@@ -144,7 +144,7 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                     </div> 
                 </div> 
                 <?php
-                    if(isset($_POST['connect'])){ 
+                    if(isset($_POST['connect'])){ //affiche le formulaire de connexion
                     ?>
                         <div class="col-12 formulaire_de_connexion" align="center">
                         <form action="index.php" method="POST">
@@ -157,7 +157,7 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                     </div>
                 <?php 
                     }
-                    elseif(isset($_POST['insert'])){ 
+                    elseif(isset($_POST['insert'])){ //affiche le formulaire d'inscription
                 ?> 
                     <div class="col-12 formulaire_de_connexion" align="center">
                     <h1>S'inscrire</h1>
@@ -168,6 +168,7 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                             <p><input type="password" value="" name="new_MDP" class="text" required/></p>
                             <p><input type="submit" name="Valider" value="Valider" class="bouton"/></p>
                         </form>
+                    
                     </div>
                 <?php 
                     }
