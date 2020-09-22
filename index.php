@@ -1,7 +1,6 @@
 <?php
 session_start();
 //$_SESSION["isconnectUS"];
-
 ?> 
 <?php require("user.php");?>
 <?php
@@ -27,20 +26,20 @@ session_start();
     }
 ?>
 <?php
- if(isset($_POST['deco2'])){ //bouton de deconnexion qui retourne à la dondition 2
+ if(isset($_POST['deco2'])){ //bouton de deconnexion qui retourne à la condition 2
     session_unset();
     session_destroy();
 
- } if(isset($_POST['deco'])){ //bouton de deconnexion qui retourne à la dondition 2
+ } if(isset($_POST['deco'])){ //bouton de deconnexion qui retourne à la condition 2
     session_unset();
     session_destroy();
 
-}  if(isset($_POST['deco3'])){ //bouton de deconnexion qui retourne à la dondition 2
+}  if(isset($_POST['deco3'])){ //bouton de deconnexion qui retourne à la condition 2
     session_unset();
     session_destroy();
 
 } 
-if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSION["isconnectAD"]==false ){ //condition 1) si l'utilisateur est deja connecter, affiche les redirections vers d'autres pages.
+if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSION["isconnectAD"]==false ){ //condition 1) si l'utilisateur est deja connecter et n'est pas un admin, affiche les redirections vers d'autres pages.
 ?>
  <html>
     <head><!-- fichier css et js de mise en page-->
@@ -77,11 +76,9 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                 
                 <form action="index.php" method="POST">
                     <div class="row">
-                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href='acces_mon_compte/compte.php'" class="bouton_redirect"/></p></div>                                      
-                        <div class="col-6" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='acces_donnee/data.php'" class="bouton_redirect"/></p></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='position_bateaux/traceur.php'" class="bouton_redirect"/></p></div>
+                        <div class="col-4" align="center"><p><input type="button" name="Valider" value="Accés à mon compte" onclick="self.location.href='acces_mon_compte/compte.php'" class="bouton_redirect"/></p></div>                                      
+                        <div class="col-4" align="center"><p><input type="button" name="Valider" value="Accés aux donnée" onclick=" self.location.href='acces_donnee/data.php'" class="bouton_redirect"/></p></div>
+                        <div class="col-4" align="center"> <p><input type="button" name="Valider" value="Position des bateaux" onclick="self.location.href='position_bateaux/traceur.php'" class="bouton_redirect"/></p></div>
                     </div>
                         <div class="col-12" align="center"><form method="POST"><p><input type="submit" name="deco2" value="deconnexion" class="bouton_redirect"/></p></form>
                     </div>
@@ -150,12 +147,11 @@ if(isset($_SESSION["isconnectUS"]) && $_SESSION["isconnectUS"]==true && $_SESSIO
                         
                     </div>         
                 </div> 
-            </div>
-            
+            </div>  
     </body>
 </html>
 <?php
-    }elseif(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true ){
+    }elseif(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true ){ //condition 3) si l'utilisateur est connecter ete et un admin, affiche la redirection vers la page d'administration
 ?>
 <html>
     <head><!-- fichier css et js de mise en page-->

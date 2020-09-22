@@ -4,8 +4,9 @@ class user{
     private $_user ="root";  //log et mot de passe de co pour la page d'acceuil
     private $_passwd="root";
 
-    private $_admin =true; //false = Non-admin , tru=admin
-    
+    private $_admin =false; //false=Non-admin , true=admin
+    // private $_logadmin;
+
 
     //méthodes:
    
@@ -14,10 +15,11 @@ class user{
     try
         {
             $maBase=new PDO('mysql:host="localhost"; dbname="user_projet_radar"; charset=utf8','root','root');
-            $LesNVusers=$maBase->query('SELECT `User`,`Mdp` FROM `user` WHERE "'.$NDC.'"=`user` && "'.$MDP.'"=`Mdp');
+            $LesNVusers=$maBase->query('SELECT `User`,`Mdp`,`admin` FROM `user` WHERE "'.$NDC.'"=`user` && "'.$MDP.'"=`Mdp');
             $admin = $LesNVusers->fetch();
             $this->_user = $admin['user'];
             $this->_passwd = $admin['Mdp'];
+            $this->_admin = $admin[`admin`];
         }    
 
             catch (Exception $erreur){
@@ -33,7 +35,12 @@ public function Compar_passwd($NDC, $MDP){ //compare les id et mdp
     }
     return false;
 }
-
+/*public function compar_admin(){
+    if(($this->_admin)==1){
+        $_logadmin = true;
+    }
+   
+}*/
 public function isAdmin(){ //verifie si c un admin
     
     return $this->_admin;

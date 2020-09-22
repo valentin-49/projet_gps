@@ -3,6 +3,7 @@ session_start();
 //$_SESSION["isconnectUS"];
 ?>
 <?php require("admin_co.php");?>
+
 <?php
 if(isset($_POST['deco2'])){ //bouton de deconnexion qui retourne à la dondition 2
     session_unset();
@@ -21,19 +22,19 @@ if(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true){
             <div class="row">
                 
                     <div class="col-2 en-tete" align="center">
-                        <form method="POST"><input type="submit" name="deco2" value="deconnexion" class="bouton"/></form>
+                        <form method="POST"><input type="submit" name="deco2" value="Deconnexion" class="bouton"/></form>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-2 en-tete" align="center">
-                        <form method="POST"><input type="submit" name="modif" value="modifier un user" class="bouton"/></form>
+                        <form method="POST"><input type="submit" name="modif" value="Modifier un user" class="bouton"/></form>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-2 en-tete" align="center">
-                        <form method="POST"><input type="submit" name="supp" value="supprimer un user" class="bouton"/></form>
+                        <form method="POST"><input type="submit" name="supp" value="Supprimer un user" class="bouton"/></form>
                     </div>
                     <div class="col-1"></div>
                     <div class="col-2 en-tete" align="center">
-                    <a href="../index.php"><button class="bouton">retour a l'accueil</button></a>
+                    <a href="../index.php"><button class="bouton">Retour a l'accueil</button></a>
                     </div>
                 
             </div>
@@ -41,13 +42,11 @@ if(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true){
             <?php
                     if(isset($_POST['modif'])){ //bouton de deconnexion qui retourne à la dondition 2
                     ?>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12 update"  align="center">
-                                <h1>modifier</h1>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-12" align="center">
+                    <div id="gestion2"> <!-- affichage de la partie delete -->
+                        <?php
+                                
+                        ?>
                     
                     <?php
                     }
@@ -71,11 +70,11 @@ if(isset($_SESSION["isconnectAD"]) || $_SESSION["isconnectAD"]==true){
 ?>
 <html>
     <head>
-        <script type="text/javascript" src="admin.js"></script>
+        <script type="text/javascript" src="../admin.js"></script>
         <link rel="stylesheet" type="text/css" href="../bootstrap-4.4.1-dist/css/bootstrap.css">
     </head>
     <body onload="redirect()">
-        <div class="congtainer">
+        <div class="container">
             <div class="row">
                 <div class="col-12" align="center">
                     <h1>Vous etes deconnetez, vous allez etre rediriger vers l'acceuil dans 3 secondes</h1>
