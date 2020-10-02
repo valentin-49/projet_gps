@@ -17,6 +17,7 @@ namespace tw
 
 	public:
 		IsometricRenderer(sf::RenderWindow * window);
+		inline void modifyWindow(sf::RenderWindow * newWindow) { this->window = newWindow; }
 		virtual void render(Environment* environment, std::vector<BaseCharacterModel*> & characters);
 	};
 }

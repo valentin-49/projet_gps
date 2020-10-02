@@ -1,30 +1,23 @@
 
 #include "IsometricRenderer.h"
+#include "BattleScreen.h"
 
 int main(int argc, char** argv)
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Isometric renderer test module");
-
-	tw::IsometricRenderer renderer(&window);
-	tw::Environment environment(20, 20);
-	std::vector<tw::BaseCharacterModel*> characters;
-
-	environment.getMapData(2, 2)->setIsObstacle(true);
-	environment.getMapData(1, 1)->setIsWalkable(false);
+	sf::RenderWindow window(sf::VideoMode(800, 600), "Tactical War");
+	tw::Screen * battle = new tw::BattleScreen();
+	sf::Clock deltaClock;
 
 	while (window.isOpen())
 	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-
+		battle->handleEvents(&window);
+		battle->update(deltaClock.restart().asSeconds());
 		window.clear();
-		renderer.render(&environment, characters);
+		battle->render(&window);
 		window.display();
 	}
+
+	delete battle;
 
 	return 0;
 }

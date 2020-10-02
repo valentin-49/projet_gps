@@ -33,10 +33,9 @@ namespace EnvironmentEditor {
 			 void reinitializeRenderer()
 			 {
 				 delete window;
-				 delete renderer;
 				 
 				 window = new sf::RenderWindow((sf::WindowHandle)sfmlRenderingSurface->Handle.ToInt32());
-				 renderer = new tw::IsometricRenderer(window);
+				 renderer->modifyWindow(window);
 				 renderer->addEventListener(eventListener);
 			 }
 
@@ -107,6 +106,7 @@ namespace EnvironmentEditor {
 			// 
 			// timer1
 			// 
+			this->timer1->Interval = 15;
 			this->timer1->Tick += gcnew System::EventHandler(this, &EditorUI::timer1_Tick);
 			// 
 			// actionsGroupBox
