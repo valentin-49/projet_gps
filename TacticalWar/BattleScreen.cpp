@@ -15,6 +15,9 @@ BattleScreen::BattleScreen()
 	YDirection = true;
 	testDirection = false;
 	setNextPosition();
+
+	font.loadFromFile("../assets/font/arial.ttf");
+	FPS.setFont(font);
 }
 
 void BattleScreen::handleEvents(sf::RenderWindow * window)
@@ -40,10 +43,16 @@ void BattleScreen::update(float deltatime)
 			setNextPosition();
 		}
 	}
+	
+	double fps = 1.0 / deltatime;
+	FPS.setString(std::to_string((int)fps));
+	FPS.setFillColor(sf::Color::Red);
+	FPS.setPosition(10, 10);
 }
 
 void BattleScreen::render(sf::RenderWindow * window)
 {
 	renderer->modifyWindow(window);
 	renderer->render(environment, characters);
+	window->draw(FPS);
 }

@@ -13,6 +13,8 @@ namespace tw
 		IsometricRenderer * renderer;
 		Environment * environment;
 		std::vector<tw::BaseCharacterModel*> characters;
+		sf::Font font;
+		sf::Text FPS;
 
 		bool testDirection;
 		bool XDirection;

@@ -3,15 +3,41 @@
 
 using namespace tw;
 
+std::map<std::string, sf::Texture*> CharacterView::textureCache;
+
+sf::Texture* CharacterView::getCachedTexture(std::string path)
+{
+	sf::Texture *texture;
+	if (textureCache.find(path) != textureCache.end())
+	{
+		texture = textureCache[path];
+	}
+	else
+	{
+		texture = new sf::Texture();
+		texture->loadFromFile(path);
+		textureCache[path] = texture;
+	}
+
+	return texture;
+}
+
 CharacterView::CharacterView(BaseCharacterModel * model)
 	: AbstractCharacterView<sf::Sprite*>(model)
 {
-	testCharacterTexture.loadFromFile("../assets/Warrior/bottomright-sheet.png");
-	testCharacterTexture.setSmooth(true);
-	testSprite.setTexture(testCharacterTexture);
+	testCharacterTexture = getCachedTexture("../assets/Warrior/bottomright-sheet.png");
+	//testCharacterTexture = new sf::Texture();
+	//testCharacterTexture->loadFromFile("../assets/Warrior/bottomright-sheet.png");
+	testCharacterTexture->setSmooth(true);
+	testSprite.setTexture(*testCharacterTexture);
 	testSprite.setTextureRect(sf::IntRect(0, 288, 173, 224));
 	testOffsetX = 78;
 	testOffsetY = 48;
+}
+
+CharacterView::~CharacterView()
+{
+	//delete testCharacterTexture;
 }
 
 sf::Sprite* CharacterView::getImageToDraw()
