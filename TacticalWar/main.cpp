@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Tactical War");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Tactical War");
 	tw::Screen * battle = new tw::BattleScreen();
 	sf::Clock deltaClock;
 

@@ -32,7 +32,7 @@ std::vector<Point2D> ZoneAndSightCalculator::generateZone(int x, int y, int minP
 	return targettableCells;
 }
 
-std::vector<Point2D> processLineOfSight(int launcherX, int launcherY, std::vector<Point2D> cellsToTest, std::vector<Obstacle*> obstacles)
+std::vector<Point2D> ZoneAndSightCalculator::processLineOfSight(int launcherX, int launcherY, std::vector<Point2D> cellsToTest, std::vector<Obstacle*> obstacles)
 {
 	std::vector<Point2D> targettableCells;
 

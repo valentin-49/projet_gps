@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "IsometricRenderer.h"
+#include <CharacterView.h>
 
 #include <iostream>
 
@@ -99,5 +100,20 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 
 			window->draw(rect);
 		}
+	}
+
+	for (int i = 0; i < characters.size(); i++)
+	{
+		BaseCharacterModel * m = characters[i];
+		CharacterView v(m);
+		sf::Sprite * s = v.getImageToDraw();
+		s->setPosition(m->getInterpolatedX() * 64, m->getInterpolatedY() * 64);
+
+
+		sf::IntRect rect = s->getTextureRect();
+		float scaleX = 64.0 / (float)rect.width;
+		float scaleY = 64.0 / (float)rect.height;
+		s->setScale(scaleX, scaleY);
+		window->draw(*s);
 	}
 }

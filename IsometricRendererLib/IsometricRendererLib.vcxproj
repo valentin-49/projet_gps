@@ -123,7 +123,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;..\AnimationsAndSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -141,7 +141,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;..\AnimationsAndSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -152,13 +152,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CharacterView.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="IsometricRenderer.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CharacterView.cpp" />
     <ClCompile Include="IsometricRenderer.cpp" />
     <ClCompile Include="IsometricRendererLib.cpp" />
     <ClCompile Include="pch.cpp">
@@ -169,6 +167,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AnimationsAndSoundLib\AnimationsAndSoundLib.vcxproj">
+      <Project>{2978aeb2-241e-4795-9480-a715e4213640}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\TacticalWarClientCommonLib\TacticalWarClientCommonLib.vcxproj">
       <Project>{b62c37fc-cdbb-4c56-a9da-15c134509611}</Project>
     </ProjectReference>

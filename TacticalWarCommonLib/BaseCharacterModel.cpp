@@ -9,6 +9,8 @@ BaseCharacterModel::BaseCharacterModel(Environment* environment, int teamId, int
 	this->environment = environment;
 	this->currentX = currentX;
 	this->currentY = currentY;
+
+	setNoTargetPosition();
 }
 
 BaseCharacterModel::~BaseCharacterModel()

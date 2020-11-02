@@ -13,6 +13,15 @@ namespace tw
 		int currentX;
 		int currentY;
 
+		//---------------------------------
+		// Pour gérer le déplacement :
+		float interpolatedX;
+		float interpolatedY;
+
+		int currentTargetX;
+		int currentTargetY;
+		//---------------------------------
+
 		int currentLife;
 
 
@@ -54,6 +63,95 @@ namespace tw
 		inline int getCurrentLife()
 		{
 			return currentLife;
+		}
+
+
+
+		inline float getInterpolatedX()
+		{
+			return interpolatedX;
+		}
+
+		inline float getInterpolatedY()
+		{
+			return interpolatedY;
+		}
+
+		inline void update(float deltatime)
+		{
+			float speed = 3;
+			
+			if (currentTargetX >= 0 && currentTargetY >= 0)
+			{
+				// 1) Déterminer la direction
+				// 2) Effectuer le mouvement dans la bonne direction sur les coordonnées interpolées
+				// 3) Déterminer si le mouvement vers la cible est terminé
+				// Si le mouvement est terminé :
+				//		4) Mettre à jour la position courante
+				//		5) Appeler setNoTargetPosition si le mouvement est terminé
+
+				float moveXVector = 0;
+				float moveYVector = 0;
+
+				if (currentX < currentTargetX)
+				{
+					moveXVector = 1;
+				}
+				else if (currentX > currentTargetX)
+				{
+					moveXVector = -1;
+				}
+
+				if (currentY < currentTargetY)
+				{
+					moveYVector = 1;
+				}
+				else if(currentY > currentTargetY)	
+				{ 
+					moveYVector = -1;
+				}
+
+				interpolatedX += moveXVector * deltatime * speed;
+				interpolatedY += moveYVector * deltatime * speed;
+
+
+				bool isMoveFinished = (moveXVector > 0 && interpolatedX > currentTargetX || moveXVector < 0 && interpolatedX < currentTargetX)
+											||
+										(moveYVector > 0 && interpolatedY > currentTargetY || moveYVector < 0 && interpolatedY < currentTargetY);
+
+				if (isMoveFinished)
+				{
+					currentX = currentTargetX;
+					currentY = currentTargetY;
+
+					interpolatedX = currentX;
+					interpolatedY = currentY;
+					
+					setNoTargetPosition();
+				}
+			}
+			else
+			{
+				interpolatedX = currentX;
+				interpolatedY = currentY;
+			}
+		}
+
+		inline void setTargetPosition(int x, int y)
+		{
+			this->currentTargetX = x;
+			this->currentTargetY = y;
+		}
+
+		inline void setNoTargetPosition()
+		{
+			this->currentTargetX = -1;
+			this->currentTargetY = -1;
+		}
+
+		inline bool hasTargetPosition()
+		{
+			return (currentTargetX >= 0 && currentTargetY >= 0);
 		}
 	};
 }

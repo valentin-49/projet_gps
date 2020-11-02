@@ -33,7 +33,7 @@ Orientation Pathfinder::getOrientationFromPosition(Position p1, Position p2)
 	return Orientation::BOTTOM_RIGHT;
 }
 
-std::vector<Position> getPath(Position startPosition, Position endPosition, Environment * environment, std::vector<Obstacle*> obstacles)
+std::vector<Position> Pathfinder::getPath(Position startPosition, Position endPosition, Environment * environment, std::vector<Obstacle*> obstacles)
 {
 	std::vector<Position> path;
 
