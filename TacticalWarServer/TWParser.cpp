@@ -3,9 +3,17 @@
 
 #include "TcpServer.h"
 #include "StringUtils.h"
+#include <PlayerManager.h>
 
 TWParser::TWParser()
 {
+	players = tw::PlayerManager::loadPlayer();
+
+	// Construct player pseudo to player data map :
+	for (int i = 0; i < players.size(); i++)
+	{
+		playersMap[players[i]->getPseudo()] = players[i];
+	}
 }
 
 
@@ -64,7 +72,34 @@ void TWParser::parse(ClientState * client, std::vector<unsigned char> & received
 
 		if (StringUtils::startsWith(toParse, "HG"))
 		{
-			TcpServer<TWParser, ClientState>::Send(client, (char*)"Hello\n", 6);
+			std::string payload = toParse.substr(2);
+
+			std::vector<std::string> data = StringUtils::explode(payload, ';');
+			
+			std::string pseudo = data[0];
+			std::string password = data[1];
+
+			if (playersMap.find(pseudo) != playersMap.end())
+			{
+				tw::Player * p = playersMap[pseudo];
+
+				if (password == p->getPassword())
+				{
+					std::cout << "Connexion du joueur " << pseudo.c_str() << std::endl;
+
+					// Si compte déjà utilisé : déconnexion du client précédent
+					if (connectedPlayerMap.find(p) != connectedPlayerMap.end())
+					{
+						std::cout << "Compte deja utilise, kick du client precedent" << std::endl;
+						// Kick :
+						kick(connectedPlayerMap[p]);
+					}
+
+					client->setPseudo(pseudo);
+					connectedPlayerMap[p] = client;
+				}
+			}
+			//TcpServer<TWParser, ClientState>::Send(client, (char*)"Hello\n", 6);
 		}
 
 		/*
@@ -86,4 +121,33 @@ void TWParser::parse(ClientState * client, std::vector<unsigned char> & received
 void TWParser::parse(SOCKET sock, unsigned char * buf, int length)
 {
 	Parser<ClientState>::parse(sock, buf, length);
+}
+
+void TWParser::kick(ClientState * client)
+{
+	// TODO : Notify disconnection to other clients (if in battle)
+	closesocket(client->getSocket());
+	//onClientDisconnected(client);
+}
+
+void TWParser::onClientConnected(ClientState * client)
+{
+	std::cout << "Client connecte" << std::endl;
+	Parser<ClientState>::onClientConnected(client);
+}
+
+void TWParser::onClientDisconnected(SOCKET sock)
+{
+	Parser<ClientState>::onClientDisconnected(sock);
+}
+
+void TWParser::onClientDisconnected(ClientState * client)
+{
+	// Clear connected player map :
+	if (client->getPseudo().length() > 0 && playersMap.find(client->getPseudo()) != playersMap.end())
+	{
+		connectedPlayerMap.erase(playersMap[client->getPseudo()]);
+		std::cout << "Client kick" << std::endl;
+	}
+	Parser<ClientState>::onClientDisconnected(client);	
 }
