@@ -3,20 +3,23 @@
 
 using namespace tw;
 
-std::map<std::string, sf::Texture*> CharacterView::textureCache;
+std::map<std::string, sf::Texture*> * CharacterView::textureCache = NULL;
 
 sf::Texture* CharacterView::getCachedTexture(std::string path)
 {
+	if (textureCache == NULL)
+		textureCache = new std::map<std::string, sf::Texture*>();
+
 	sf::Texture *texture;
-	if (textureCache.find(path) != textureCache.end())
+	if (textureCache->find(path) != textureCache->end())
 	{
-		texture = textureCache[path];
+		texture = (*textureCache)[path];
 	}
 	else
 	{
 		texture = new sf::Texture();
 		texture->loadFromFile(path);
-		textureCache[path] = texture;
+		(*textureCache)[path] = texture;
 	}
 
 	return texture;
@@ -25,7 +28,7 @@ sf::Texture* CharacterView::getCachedTexture(std::string path)
 CharacterView::CharacterView(BaseCharacterModel * model)
 	: AbstractCharacterView<sf::Sprite*>(model)
 {
-	testCharacterTexture = getCachedTexture("../assets/Warrior/bottomright-sheet.png");
+	testCharacterTexture = NULL;// getCachedTexture("../assets/Warrior/bottomright-sheet.png");
 	//testCharacterTexture = new sf::Texture();
 	//testCharacterTexture->loadFromFile("../assets/Warrior/bottomright-sheet.png");
 	testCharacterTexture->setSmooth(true);

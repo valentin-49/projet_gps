@@ -11,7 +11,7 @@ namespace tw
 	class CharacterView : public AbstractCharacterView<sf::Sprite*>
 	{
 	private:
-		static std::map<std::string, sf::Texture*> textureCache;
+		static std::map<std::string, sf::Texture*> * textureCache;
 		static sf::Texture* getCachedTexture(std::string path);
 
 		sf::Texture *testCharacterTexture;
