@@ -126,8 +126,9 @@ void TWParser::parse(SOCKET sock, unsigned char * buf, int length)
 void TWParser::kick(ClientState * client)
 {
 	// TODO : Notify disconnection to other clients (if in battle)
-	closesocket(client->getSocket());
+	//closesocket(client->getSocket());
 	//onClientDisconnected(client);
+	notifyKick(client);
 }
 
 void TWParser::onClientConnected(ClientState * client)

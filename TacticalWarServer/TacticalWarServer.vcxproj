@@ -143,6 +143,7 @@
     <ClCompile Include="ClientState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="ParserEventListener.cpp" />
     <ClCompile Include="StringUtils.cpp" />
     <ClCompile Include="TWParser.cpp" />
     <ClCompile Include="TcpServer.cpp" />
@@ -151,6 +152,7 @@
   <ItemGroup>
     <ClInclude Include="ClientState.h" />
     <ClInclude Include="Parser.h" />
+    <ClInclude Include="ParserEventListener.h" />
     <ClInclude Include="StringUtils.h" />
     <ClInclude Include="TWParser.h" />
     <ClInclude Include="TcpServer.h" />

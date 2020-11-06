@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ClientState.h"
+#include "ParserEventListener.h"
 #include <vector>
 #include <set>
 #include <map>
@@ -10,14 +11,37 @@ class Parser
 {
 private:
 	std::map<SOCKET, CS *> socketToClientMap;
+	std::vector<ParserEventListener*> eventListeners;
 
 protected:
 	inline std::map<SOCKET, CS *> & getConnectedClients() {
 		return socketToClientMap;
 	}
 
+	void notifyKick(CS * clientState)
+	{
+		for (int i = 0; i < eventListeners.size(); i++)
+		{
+			eventListeners[i]->onClientKicked(clientState->getSocket());
+		}
+	}
+
 public:
 	virtual ~Parser();
+
+	void addEventListener(ParserEventListener * listener)
+	{
+		eventListeners.push_back(listener);
+	}
+
+	void removeEventListener(ParserEventListener * listener)
+	{
+		std::vector<ParserEventListener*>::iterator it;
+		if ((it = std::find(eventListeners.begin(), eventListeners.end(), listener)) != eventListeners.end())
+		{
+			eventListeners.erase(it);
+		}
+	}
 
 	virtual void onClientConnected(CS * client);
 	void parse(SOCKET sock, unsigned char * buf, int length);

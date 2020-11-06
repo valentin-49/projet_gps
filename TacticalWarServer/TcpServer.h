@@ -1,13 +1,14 @@
 #pragma once
 
 #include <WS2tcpip.h>
+#include "ParserEventListener.h"
 
 #pragma comment (lib, "ws2_32.lib")
 
 #define BUF_SIZE 4096
 
 template<class T, class CS>
-class TcpServer
+class TcpServer : public ParserEventListener
 {
 private:
 	SOCKET listeningSocket;
@@ -24,8 +25,11 @@ public:
 	~TcpServer();
 
 	static void Send(CS * client, char * buffer, int length);
+	void kick(SOCKET s);
 
 	T * getParser();
+
+	virtual void onClientKicked(SOCKET sock);
 };
 
 template<class T, class CS>
@@ -66,6 +70,7 @@ TcpServer<T, CS>::TcpServer(u_short listeningPort)
 	FD_SET(listeningSocket, &master);
 
 	parser = new T();
+	parser->addEventListener(this);
 	running = true;
 
 	DWORD threadId;
@@ -114,9 +119,7 @@ DWORD WINAPI TcpServer<T, CS>::ServerThread(LPVOID parameters)
 				int bytesIn = recv(sock, buf, BUF_SIZE, 0);
 				if (bytesIn <= 0)
 				{
-					closesocket(sock);
-					FD_CLR(sock, &(server->master));
-					server->parser->onClientDisconnected(sock);
+					server->kick(sock);
 				}
 				else
 				{
@@ -153,4 +156,18 @@ void TcpServer<T, CS>::Send(CS * client, char * buffer, int length)
 {
 	SOCKET sock = client->getSocket();
 	send(sock, buffer, length, 0);
+}
+
+template<class T, class CS>
+void TcpServer<T, CS>::onClientKicked(SOCKET sock)
+{
+	kick(sock);
+}
+
+template<class T, class CS>
+void TcpServer<T, CS>::kick(SOCKET s)
+{
+	closesocket(s);
+	FD_CLR(s, &(master));
+	parser->onClientDisconnected(s);
 }
