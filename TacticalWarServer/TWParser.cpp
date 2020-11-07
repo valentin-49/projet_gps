@@ -4,10 +4,11 @@
 #include "TcpServer.h"
 #include "StringUtils.h"
 #include <PlayerManager.h>
+#include <Match.h>
 
 TWParser::TWParser()
 {
-	players = tw::PlayerManager::loadPlayer();
+	players = tw::PlayerManager::loadPlayers();
 
 	// Construct player pseudo to player data map :
 	for (int i = 0; i < players.size(); i++)
@@ -97,6 +98,18 @@ void TWParser::parse(ClientState * client, std::vector<unsigned char> & received
 
 					client->setPseudo(pseudo);
 					connectedPlayerMap[p] = client;
+
+					tw::Match * match = tw::PlayerManager::getCurrentOrNextMatchForPlayer(p);
+					if (match->getStatus() == tw::MatchStatus::STARTED)
+					{
+						// Retour en jeu (reconnexion en combat)
+						Battle * b = (Battle*)match->getBattlePayload();
+						// TODO : Notify that the player is back.
+					}
+					else
+					{
+						// Détail du match à venir : proposer de rejoindre le match
+					}
 				}
 			}
 			//TcpServer<TWParser, ClientState>::Send(client, (char*)"Hello\n", 6);
@@ -126,8 +139,6 @@ void TWParser::parse(SOCKET sock, unsigned char * buf, int length)
 void TWParser::kick(ClientState * client)
 {
 	// TODO : Notify disconnection to other clients (if in battle)
-	//closesocket(client->getSocket());
-	//onClientDisconnected(client);
 	notifyKick(client);
 }
 
@@ -147,8 +158,18 @@ void TWParser::onClientDisconnected(ClientState * client)
 	// Clear connected player map :
 	if (client->getPseudo().length() > 0 && playersMap.find(client->getPseudo()) != playersMap.end())
 	{
-		connectedPlayerMap.erase(playersMap[client->getPseudo()]);
-		std::cout << "Client kick" << std::endl;
+		tw::Player * p = playersMap[client->getPseudo()];
+		
+		if (playerToBattleMap.find(p) != playerToBattleMap.end())
+		{
+			std::cout << "Notify battle that connection is lost with " << p->getPseudo().c_str() << std::endl;
+			
+			// TODO : Notify battle that the connection with the player is lost
+			//playerToBattleMap[p]->connectionLostWith(p);
+		}
+
+		connectedPlayerMap.erase(p);
+		std::cout << "Client " << p->getPseudo().c_str() << " disconnected ..." << std::endl;
 	}
 	Parser<ClientState>::onClientDisconnected(client);	
 }

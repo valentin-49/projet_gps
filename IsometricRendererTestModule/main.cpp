@@ -1,7 +1,7 @@
 
 
-#include "Environment.h"
-#include "BaseCharacterModel.h"
+#include <Environment.h>
+#include <BaseCharacterModel.h>
 #include <vector>
 #include <IsometricRenderer.h>
 #include <SFML/Graphics.hpp>

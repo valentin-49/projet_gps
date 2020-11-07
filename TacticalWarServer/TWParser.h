@@ -5,6 +5,7 @@
 #include "ThreadSafeQueue.h"
 #include <Player.h>
 #include <map>
+#include <Battle.h>
 
 class ModbusOperation;
 
@@ -15,6 +16,7 @@ class TWParser : public Parser<ClientState>
 	std::vector<tw::Player*> players;
 	std::map<std::string, tw::Player*> playersMap;
 	std::map<tw::Player*, ClientState*> connectedPlayerMap;
+	std::map<tw::Player*, Battle*> playerToBattleMap;
 
 public:
 	TWParser();

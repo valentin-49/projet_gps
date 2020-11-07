@@ -58,9 +58,9 @@ namespace tw
 		}
 
 	public:
-		BattleScreen();
+		BattleScreen(tgui::Gui * gui);
 
-		virtual void handleEvents(sf::RenderWindow * window);
+		virtual void handleEvents(sf::RenderWindow * window, tgui::Gui * gui);
 		virtual void update(float deltatime);
 		virtual void render(sf::RenderWindow * window);
 	};

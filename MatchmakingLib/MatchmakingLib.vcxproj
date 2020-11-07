@@ -153,14 +153,12 @@
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="Match.h" />
-    <ClInclude Include="MatchEntity.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Match.cpp" />
-    <ClCompile Include="MatchEntity.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

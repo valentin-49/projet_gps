@@ -8,7 +8,9 @@ namespace tw
 	private:
 		std::string pseudo;
 		std::string password;
-		int teamId;
+		int teamNumber;
+
+		bool hasJoinBattle;
 
 	public:
 		Player(std::string pseudo, std::string password, int teamId);
@@ -23,9 +25,14 @@ namespace tw
 			return password;
 		}
 
-		inline int getTeamId()
+		inline int getTeamNumber()
 		{
-			return teamId;
+			return teamNumber;
+		}
+
+		inline bool getHasJoinBattle()
+		{
+			return hasJoinBattle;
 		}
 	};
 }
