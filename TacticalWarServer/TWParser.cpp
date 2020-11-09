@@ -75,42 +75,50 @@ void TWParser::parse(ClientState * client, std::vector<unsigned char> & received
 		{
 			std::string payload = toParse.substr(2);
 
-			std::vector<std::string> data = StringUtils::explode(payload, ';');
-			
-			std::string pseudo = data[0];
-			std::string password = data[1];
-
-			if (playersMap.find(pseudo) != playersMap.end())
+			// Connexion joueur :
+			if (payload.length() > 0)
 			{
-				tw::Player * p = playersMap[pseudo];
+				std::vector<std::string> data = StringUtils::explode(payload, ';');
 
-				if (password == p->getPassword())
+				std::string pseudo = data[0];
+				std::string password = data[1];
+
+				if (playersMap.find(pseudo) != playersMap.end())
 				{
-					std::cout << "Connexion du joueur " << pseudo.c_str() << std::endl;
+					tw::Player * p = playersMap[pseudo];
 
-					// Si compte déjà utilisé : déconnexion du client précédent
-					if (connectedPlayerMap.find(p) != connectedPlayerMap.end())
+					if (password == p->getPassword())
 					{
-						std::cout << "Compte deja utilise, kick du client precedent" << std::endl;
-						// Kick :
-						kick(connectedPlayerMap[p]);
-					}
+						std::cout << "Connexion du joueur " << pseudo.c_str() << std::endl;
 
-					client->setPseudo(pseudo);
-					connectedPlayerMap[p] = client;
+						// Si compte déjà utilisé : déconnexion du client précédent
+						if (connectedPlayerMap.find(p) != connectedPlayerMap.end())
+						{
+							std::cout << "Compte deja utilise, kick du client precedent" << std::endl;
+							// Kick :
+							kick(connectedPlayerMap[p]);
+						}
 
-					tw::Match * match = tw::PlayerManager::getCurrentOrNextMatchForPlayer(p);
-					if (match->getStatus() == tw::MatchStatus::STARTED)
-					{
-						// Retour en jeu (reconnexion en combat)
-						Battle * b = (Battle*)match->getBattlePayload();
-						// TODO : Notify that the player is back.
-					}
-					else
-					{
-						// Détail du match à venir : proposer de rejoindre le match
+						client->setPseudo(pseudo);
+						connectedPlayerMap[p] = client;
+
+						tw::Match * match = tw::PlayerManager::getCurrentOrNextMatchForPlayer(p);
+						if (match->getStatus() == tw::MatchStatus::STARTED)
+						{
+							// Retour en jeu (reconnexion en combat)
+							Battle * b = (Battle*)match->getBattlePayload();
+							// TODO : Notify that the player is back.
+						}
+						else
+						{
+							// Détail du match à venir : proposer de rejoindre le match
+						}
 					}
 				}
+			}
+			else // Connexion spectateur
+			{
+				// Liste des matchs en cours
 			}
 			//TcpServer<TWParser, ClientState>::Send(client, (char*)"Hello\n", 6);
 		}

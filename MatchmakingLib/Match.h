@@ -38,6 +38,7 @@ namespace tw
 			this->name = name;
 			status = MatchStatus::NOT_STARTED;
 			winnerTeam = 0;
+			battlePayload = NULL;
 		}
 
 		void setTeam1Players(Player * p1, Player * p2)
@@ -111,7 +112,5 @@ namespace tw
 		{
 			battlePayload = obj;
 		}
-
-
 	};
 }
