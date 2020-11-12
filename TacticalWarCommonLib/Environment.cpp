@@ -3,8 +3,9 @@
 
 using namespace tw;
 
-Environment::Environment(int width, int height)
+Environment::Environment(int width, int height, int environmentId)
 {
+	this->id = environmentId;
 	this->width = width;
 	this->height = height;
 

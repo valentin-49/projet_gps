@@ -20,13 +20,7 @@ std::vector<tw::Player*> tw::PlayerManager::loadPlayers()
 
 tw::Match * tw::PlayerManager::getCurrentOrNextMatchForPlayer(tw::Player * p)
 {
-	if (testMatch == NULL)
-	{
-		testMatch = new tw::Match("Tour 1 - Eq 1 VS Eq 2");
-		std::vector<tw::Player*> players = loadPlayers();
-		testMatch->setTeam1Players(players[0], players[1]);
-		testMatch->setTeam2Players(players[2], players[3]);
-	}
+	createTestMatchIfNotExists();
 
 	// TODO : Rechercher le match courant ou le prochain pour le joueur p 
 	// et le retourner. Si aucun match à venir, retourner NULL.
@@ -37,4 +31,18 @@ tw::Match * tw::PlayerManager::getCurrentOrNextMatchForPlayer(tw::Player * p)
 	}
 
 	return NULL;
+}
+
+std::vector<tw::Match*> tw::PlayerManager::getCurrentlyPlayingMatchs()
+{
+	std::vector<tw::Match*> result;
+
+	createTestMatchIfNotExists();
+
+	if (testMatch->getStatus() == MatchStatus::STARTED)
+	{
+		result.push_back(testMatch);
+	}
+
+	return result;
 }

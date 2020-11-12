@@ -12,9 +12,19 @@ namespace tw
 		FINISHED
 	};
 
+	class Match;
+	class MatchEventListener
+	{
+	public:
+		virtual void onMatchStatusChanged(Match * match, MatchStatus oldStatus, MatchStatus newStatus) = 0;
+	};
+
 	class Match
 	{
 	private:
+		static int matchId;
+
+		int id;
 		std::string name;
 		std::vector<Player*> team1;
 		//Player * team1PlayerTakeInit;
@@ -26,19 +36,34 @@ namespace tw
 
 		void * battlePayload;
 
+		std::vector<MatchEventListener*> listeners;
+
 		bool playerIsInTeam(Player * p, std::vector<Player*> & team)
 		{
 			return std::find(team.begin(), team.end(), p) != team.end();
 		}
 
+		void notifyStatusChanged(MatchStatus oldStatus, MatchStatus newStatus)
+		{
+			for (int i = 0; i < listeners.size(); i++)
+			{
+				listeners[i]->onMatchStatusChanged(this, oldStatus, newStatus);
+			}
+		}
 
 	public:
 		Match(std::string name)
 		{
+			this->id = matchId++;
 			this->name = name;
 			status = MatchStatus::NOT_STARTED;
 			winnerTeam = 0;
 			battlePayload = NULL;
+		}
+
+		int getId()
+		{
+			return id;
 		}
 
 		void setTeam1Players(Player * p1, Player * p2)
@@ -111,6 +136,28 @@ namespace tw
 		void setBattlePayload(void * obj)
 		{
 			battlePayload = obj;
+		}
+
+		void setMatchStatus(MatchStatus status)
+		{
+			MatchStatus oldStatus;
+			this->status = status;
+			notifyStatusChanged(oldStatus, status);
+		}
+
+		void addEventListener(MatchEventListener * l)
+		{
+			listeners.push_back(l);
+		}
+
+		void removeEventListener(MatchEventListener * l)
+		{
+			std::vector<MatchEventListener*>::iterator it = std::find(listeners.begin(), listeners.end(), l);
+
+			if (it != listeners.end())
+			{
+				listeners.erase(it);
+			}
 		}
 	};
 }

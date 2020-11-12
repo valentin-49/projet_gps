@@ -6,10 +6,11 @@
 #include <Player.h>
 #include <map>
 #include <Battle.h>
+#include <Match.h>
 
 class ModbusOperation;
 
-class TWParser : public Parser<ClientState>
+class TWParser : public Parser<ClientState>, tw::MatchEventListener
 {
 	bool hasCompleteMessage(ClientState * client);
 	std::string extractCompleteMessageFromBuffer(ClientState * client);
@@ -17,6 +18,9 @@ class TWParser : public Parser<ClientState>
 	std::map<std::string, tw::Player*> playersMap;
 	std::map<tw::Player*, ClientState*> connectedPlayerMap;
 	std::map<tw::Player*, Battle*> playerToBattleMap;
+
+	// Liste des clients en mode spectateur (pour mettre à jour la liste des match en cours) :
+	std::vector<ClientState*> spectatorModeClientDiffusionList;
 
 public:
 	TWParser();
@@ -29,5 +33,8 @@ public:
 	virtual void onClientDisconnected(ClientState * client);
 
 	void kick(ClientState * client);
+
+	// MatchEventListener implementation :
+	virtual void onMatchStatusChanged(tw::Match * match, tw::MatchStatus oldStatus, tw::MatchStatus newStatus);
 };
 

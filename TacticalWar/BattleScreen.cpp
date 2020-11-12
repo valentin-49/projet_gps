@@ -6,7 +6,7 @@ using namespace tw;
 BattleScreen::BattleScreen(tgui::Gui * gui)
 {
 	renderer = new IsometricRenderer(NULL);
-	environment = new Environment(11, 5);
+	environment = new Environment(11, 5, 0);
 	environment->getMapData(2, 2)->setIsObstacle(true);
 	environment->getMapData(1, 1)->setIsWalkable(false);
 

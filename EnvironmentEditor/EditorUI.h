@@ -46,7 +46,7 @@ namespace EnvironmentEditor {
 
 			window = new sf::RenderWindow((sf::WindowHandle)sfmlRenderingSurface->Handle.ToInt32());
 			renderer = new tw::IsometricRenderer(window);
-			environment = new tw::Environment(15, 15);
+			environment = new tw::Environment(15, 15, 0);
 			environment->getMapData(1, 1)->setIsObstacle(true);
 			environment->getMapData(2, 2)->setIsWalkable(false);
 			characters = new std::vector<tw::BaseCharacterModel*>();

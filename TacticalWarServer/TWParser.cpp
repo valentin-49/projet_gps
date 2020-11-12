@@ -118,7 +118,10 @@ void TWParser::parse(ClientState * client, std::vector<unsigned char> & received
 			}
 			else // Connexion spectateur
 			{
-				// Liste des matchs en cours
+				spectatorModeClientDiffusionList.push_back(client);
+				
+				std::vector<tw::Match*> playingMatch = tw::PlayerManager::getCurrentlyPlayingMatchs();
+				// TODO : Envoi de la liste des matchs en cours
 			}
 			//TcpServer<TWParser, ClientState>::Send(client, (char*)"Hello\n", 6);
 		}
@@ -180,4 +183,15 @@ void TWParser::onClientDisconnected(ClientState * client)
 		std::cout << "Client " << p->getPseudo().c_str() << " disconnected ..." << std::endl;
 	}
 	Parser<ClientState>::onClientDisconnected(client);	
+}
+
+
+void TWParser::onMatchStatusChanged(tw::Match * match, tw::MatchStatus oldStatus, tw::MatchStatus newStatus)
+{
+	// Notify spectator mode clients
+	for (int i = 0; i < spectatorModeClientDiffusionList.size(); i++)
+	{
+		ClientState * c = spectatorModeClientDiffusionList[i];
+		// TODO : Notify status changed (send data to clients)
+	}
 }

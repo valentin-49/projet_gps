@@ -56,3 +56,6 @@ TacticalWarServer/x64/
 ZoneAndSightLib/x64/
 .vs/
 MatchmakingLib/x64/
+TacticalWarBattleLib/x64/
+ColorisationTestModule/x64/
+EnvironmentPersistanceLib/x64/

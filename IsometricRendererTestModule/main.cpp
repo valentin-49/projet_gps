@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 	sf::RenderWindow window(sf::VideoMode(800, 600), "Isometric renderer test module");
 	
 	IsometricRenderer renderer(&window);
-	Environment environment(20, 20);
+	Environment environment(20, 20, 0);
 	std::vector<BaseCharacterModel*> characters;
 
 	environment.getMapData(1, 1)->setIsObstacle(true);
