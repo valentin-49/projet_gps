@@ -5,6 +5,7 @@
 #include <vector>
 #include <IsometricRenderer.h>
 #include <SFML/Graphics.hpp>
+#include "TestColorator.h"
 
 using namespace tw;
 
@@ -18,6 +19,8 @@ int main(int argc, char** argv)
 
 	environment.getMapData(1, 1)->setIsObstacle(true);
 	environment.getMapData(2, 2)->setIsWalkable(false);
+	
+	renderer.setColorator(new TestColorator());
 
 	while (window.isOpen())
 	{

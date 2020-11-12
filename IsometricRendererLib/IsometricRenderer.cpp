@@ -9,6 +9,7 @@ using namespace tw;
 IsometricRenderer::IsometricRenderer(sf::RenderWindow * window)
 {
 	this->window = window;
+	this->colorator = NULL;
 }
 
 void IsometricRenderer::manageEvents(Environment * environment, std::vector<BaseCharacterModel*> & characters)
@@ -96,7 +97,14 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 
 			rect.setPosition(i * 64, j * 64);
 			rect.setSize(size);
-			rect.setFillColor(color);
+
+			sf::Color mulColor = sf::Color::White;
+			if (colorator != NULL)
+			{
+				mulColor = colorator->getColorForCell(cell);
+			}
+
+			rect.setFillColor(color * mulColor);
 
 			window->draw(rect);
 		}
