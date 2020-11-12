@@ -4,6 +4,7 @@
 #include <IsometricRenderer.h>
 #include <Environment.h>
 #include <BaseCharacterModel.h>
+#include "TWColorator.h"
 
 namespace tw
 {
@@ -12,6 +13,7 @@ namespace tw
 	private:
 		IsometricRenderer * renderer;
 		Environment * environment;
+		TWColorator * colorator;
 		std::vector<tw::BaseCharacterModel*> characters;
 		sf::Font font;
 		sf::Text FPS;

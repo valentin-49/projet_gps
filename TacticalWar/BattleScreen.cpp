@@ -10,6 +10,10 @@ BattleScreen::BattleScreen(tgui::Gui * gui)
 	environment->getMapData(2, 2)->setIsObstacle(true);
 	environment->getMapData(1, 1)->setIsWalkable(false);
 
+	colorator = new TWColorator(sf::Color(40, 200, 255));
+
+	renderer->setColorator(colorator);
+
 	characters.push_back(new TestCharacterModel(environment, 0, 0, 0));
 	XDirection = true;
 	YDirection = true;
@@ -41,6 +45,7 @@ void BattleScreen::handleEvents(sf::RenderWindow * window, tgui::Gui * gui)
 
 void BattleScreen::update(float deltatime)
 {
+	std::vector<Point2D> pathZone;
 	for (int i = 0; i < characters.size(); i++)
 	{
 		characters[i]->update(deltatime);
@@ -49,8 +54,17 @@ void BattleScreen::update(float deltatime)
 		{
 			setNextPosition();
 		}
+
+		int x = characters[i]->getCurrentX();
+		int y = characters[i]->getCurrentY();
+		pathZone.push_back(Point2D(x - 1, y));
+		pathZone.push_back(Point2D(x + 1, y));
+		pathZone.push_back(Point2D(x, y - 1));
+		pathZone.push_back(Point2D(x, y + 1));
 	}
-	
+
+	colorator->setPathZone(pathZone);
+
 	double fps = 1.0 / deltatime;
 	FPS.setString(std::to_string((int)fps));
 	FPS.setFillColor(sf::Color::Red);

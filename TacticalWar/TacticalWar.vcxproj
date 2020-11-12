@@ -150,6 +150,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="TestCharacterModel.cpp" />
+    <ClCompile Include="TWColorator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IsometricRendererLib\IsometricRendererLib.vcxproj">
@@ -166,6 +167,7 @@
     <ClInclude Include="BattleScreen.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="TestCharacterModel.h" />
+    <ClInclude Include="TWColorator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>
