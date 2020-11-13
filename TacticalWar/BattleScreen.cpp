@@ -20,7 +20,7 @@ BattleScreen::BattleScreen(tgui::Gui * gui)
 	testDirection = false;
 	setNextPosition();
 
-	font.loadFromFile("../assets/font/arial.ttf");
+	font.loadFromFile("./assets/font/arial.ttf");
 	FPS.setFont(font);
 
 	tgui::Button::Ptr button = tgui::Button::create();
