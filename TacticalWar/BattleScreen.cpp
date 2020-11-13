@@ -45,6 +45,8 @@ void BattleScreen::handleEvents(sf::RenderWindow * window, tgui::Gui * gui)
 
 void BattleScreen::update(float deltatime)
 {
+	Screen::update(deltatime);
+
 	std::vector<Point2D> pathZone;
 	for (int i = 0; i < characters.size(); i++)
 	{
@@ -74,6 +76,6 @@ void BattleScreen::update(float deltatime)
 void BattleScreen::render(sf::RenderWindow * window)
 {
 	renderer->modifyWindow(window);
-	renderer->render(environment, characters);
+	renderer->render(environment, characters, getDeltatime());
 	window->draw(FPS);
 }
