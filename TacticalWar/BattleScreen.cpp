@@ -5,6 +5,8 @@ using namespace tw;
 
 BattleScreen::BattleScreen(tgui::Gui * gui)
 {
+	gui->removeAllWidgets();
+	
 	renderer = new IsometricRenderer(NULL);
 	environment = new Environment(11, 5, 0);
 	environment->getMapData(2, 2)->setIsObstacle(true);
