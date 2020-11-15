@@ -25,6 +25,5 @@ Puis aller dans votre dossier sur github et faire un "new pull request" avec un 
 - git commit -m "comments (commande pour faire un commit obligatoire pour le push)
 - git push origin master (pour push vos modifications dans votre dossier fork github)
 - git pull origin master (pour avoir la dernière version du projet de votre équipe)
-=======
-Puis aller dans votre dossier sur github et faire un "new pull request" avec un titre de pull request adapté.
->>>>>>> 72fc326838aa726f0b4548a42aec475b33f25d9d
+- git stash (commande à faire en cas de conflit entre votre version et votre projet fork)
+
