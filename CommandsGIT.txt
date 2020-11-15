@@ -1,4 +1,9 @@
-git remote add upstream https://github.com/Alex6092/TacticalWar.git
-git fetch 
-git pull upstream master
-git push origin master
+- git remote add upstream https://github.com/Alex6092/TacticalWar.git
+- git fetch
+- git pull upstream master
+- ouvrir le fichier "Pull-Request-Verif.txt" Ajouter son nom puis enregistrer 
+- git add Pull-Request-Verif.txt
+- git commit -m "add of my name for pull request verification"
+- git push origin master 
+
+Puis aller dans votre dossier sur github et faire un "new pull request" avec un titre de pull request adapté  
