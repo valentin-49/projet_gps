@@ -1,3 +1,7 @@
+Après avoir fork le projet dit "upstream"
+Faire un git clone de votre fork dit "origin" dans vos dossiers 
+Une fois cloné ouvrir "TacticalWar" faites un clique droit puis "Git Bash Here" et entrez les commandes suivantes
+
 - git remote add upstream https://github.com/Alex6092/TacticalWar.git
 - git fetch
 - git pull upstream master
@@ -7,3 +11,16 @@
 - git push origin master 
 
 Puis aller dans votre dossier sur github et faire un "new pull request" avec un titre de pull request adapté  
+
+
+
+/*-----------------------
+      Commandes utiles
+------------------------*/
+
+
+- git pull upstream master (pour récupérer la dernière version du projet)
+- git add filename (commandes obligatoire lorsque vous modifier un fichier que vous voulez commit)
+- git commit -m "comments (commande pour faire un commit obligatoire pour le push)
+- git push origin master (pour push vos modifications dans votre dossier fork github)
+- git pull origin master (pour avoir la dernière version du projet de votre équipe)
