@@ -6,4 +6,4 @@
 - git commit -m "add of my name for pull request verification"
 - git push origin master 
 
-Puis aller dans votre dossier sur github et faire un "new pull request" avec un titre de pull request adapté  
+Puis aller dans votre dossier sur github et faire un "new pull request" avec un titre de pull request adapté.
