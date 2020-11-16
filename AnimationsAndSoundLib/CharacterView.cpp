@@ -101,7 +101,7 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 		}
 		
 		sf::Sprite * s = new sf::Sprite(*testCharacterTexture, sf::IntRect(tabs[5], tabs[4], tabs[3], tabs[2]));
-		
+		//s->setScale(-1, 1);
 		testOffsetX = tabs[1];
 		testOffsetY = tabs[0];
 		//s->setOrigin(testOffsetX, testOffsetY);

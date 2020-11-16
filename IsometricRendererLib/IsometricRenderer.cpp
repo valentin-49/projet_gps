@@ -120,9 +120,10 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 
 
 		sf::IntRect rect = s->getTextureRect();
+		bool flipped = s->getScale().x < 0;
 		float scaleX = 64.0 / (float)rect.width;
 		float scaleY = 64.0 / (float)rect.height;
-		s->setScale(scaleX, scaleY);
+		s->setScale(flipped ? -scaleX : scaleX, scaleY);
 		window->draw(*s);
 	}
 }
