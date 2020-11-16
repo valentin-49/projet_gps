@@ -123,7 +123,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;..\AnimationsAndSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\PathfindingLib;..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;..\AnimationsAndSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -141,7 +141,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;..\AnimationsAndSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\PathfindingLib;..\lib\SFML-2.5.1\include;..\TacticalWarCommonLib;..\TacticalWarClientCommonLib;..\AnimationsAndSoundLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -171,6 +171,9 @@
   <ItemGroup>
     <ProjectReference Include="..\AnimationsAndSoundLib\AnimationsAndSoundLib.vcxproj">
       <Project>{2978aeb2-241e-4795-9480-a715e4213640}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\PathfindingLib\PathfindingLib.vcxproj">
+      <Project>{f579ad13-4a80-40f5-aba4-88e8e8739a71}</Project>
     </ProjectReference>
     <ProjectReference Include="..\TacticalWarClientCommonLib\TacticalWarClientCommonLib.vcxproj">
       <Project>{b62c37fc-cdbb-4c56-a9da-15c134509611}</Project>
