@@ -70,9 +70,9 @@ CharacterView::~CharacterView()
 
 sf::Sprite* CharacterView::getImageToDraw()
 {
-	// TODO : (team "Animation personnage") : Réaliser le code d'animation du personnage dans cette classe.
-	// Cette méthode (getImageToDraw) doit retourner l'image qui devra être dessinée à l'écran (en fonction de où en est l'animation)
-	// Vous devrez également utiliser les services de la team "Colorisation" pour obtenir un personnage coloré (personnalisation des couleurs en fonction de l'équipe).
+	// TODO : (team "Animation personnage") : RÃ©aliser le code d'animation du personnage dans cette classe.
+	// Cette mÃ©thode (getImageToDraw) doit retourner l'image qui devra Ãªtre dessinÃ©e Ã  l'Ã©cran (en fonction de oÃ¹ en est l'animation)
+	// Vous devrez Ã©galement utiliser les services de la team "Colorisation" pour obtenir un personnage colorÃ© (personnalisation des couleurs en fonction de l'Ã©quipe).
 	
 	double p = 1, time = elsetime;
 	p /= NbImg;
