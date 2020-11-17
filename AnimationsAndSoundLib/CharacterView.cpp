@@ -2,8 +2,9 @@
 #include "CharacterView.h"
 #include <iostream>
 #include <string>
-#include <fstream>
 #include <StringUtils.h>
+#include <SFML/System/FileInputStream.hpp>
+
 using namespace tw;
 using namespace std;
 std::map<std::string, sf::Texture*> * CharacterView::textureCache = NULL;
@@ -40,15 +41,25 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 {
 	std::vector<sf::Sprite *> anim;
 	sf::Texture *testCharacterTexture = getCachedTexture(filename + ".png");
-	ifstream position(filename + ".anim.exode", ios::in);
+	sf::FileInputStream stream;
 	string str;
 	double NbImg = -1;
 	int testOffsetX, testOffsetY;
 
-	if (position){
-		while (getline(position, str))
-			positionView.push_back(str);	// tant que l'on peut mettre la ligne dans "positionView"	
+	if (stream.open(filename + ".anim.exode")){
+		int length = stream.getSize();
+		char * data = new char[length + 1];
+		stream.read(data, length);
+		data[length] = '\0';
+		std::vector<std::string> lines = StringUtils::explode(data, '\n');
+		delete data;
+		for(int i = 0; i < lines.size(); i++)
+			positionView.push_back(lines[i]);	// tant que l'on peut mettre la ligne dans "positionView"	
 	} 	
+	else
+	{
+		std::cout << "Echec de l'ouverture du fichier " << filename.c_str() << ".anim.exode" << std::endl;
+	}
 	for (int y = 0; y < positionView.size(); y++) {		// compte le nombre d'imagne dans le fichier
 		if (positionView[y][0] != '\0')
 			NbImg++;	
