@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <StringUtils.h>
 using namespace tw;
 using namespace std;
 std::map<std::string, sf::Texture*> * CharacterView::textureCache = NULL;
@@ -46,7 +47,7 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 
 	if (position){
 		while (getline(position, str))
-		positionView.push_back(str);	// tant que l'on peut mettre la ligne dans "positionView"	
+			positionView.push_back(str);	// tant que l'on peut mettre la ligne dans "positionView"	
 	} 	
 	for (int y = 0; y < positionView.size(); y++) {		// compte le nombre d'imagne dans le fichier
 		if (positionView[y][0] != '\0')
@@ -54,31 +55,17 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 	}
 
 	testCharacterTexture->setSmooth(true);
-	// modifier le code pour qui sois un peut plus simple.
+
 	for (int i = 0; i < NbImg; i++)
 	{
-		int b = 0;
-		for (int y = 0; y < positionView[i].length(); y++) {
-			if (positionView[i][y] != ';') {
-				positionViewTrie[b] = positionView[i][y];
-				b++;
-			}
-			else {
-				//a fini!!
-				positionViewInt.push_back(atoi(positionViewTrie.front()));
-				positionViewTrie.clear();
-				b = 0;
-			}
-		}
-		if (tab[0] != '\0') {
-			positionViewInt.push_back(atof(tab));
-		}
-		sf::Sprite * s = new sf::Sprite(*testCharacterTexture, sf::IntRect(positionViewInt[0], positionViewInt[1], positionViewInt[2], positionViewInt[3]));
-		testOffsetX = positionViewInt[4];
-		testOffsetY = positionViewInt[5];
-		//s->setOrigin(testOffsetX, testOffsetY);
+		std::vector<std::string> result = StringUtils::explode(positionView[i],';');
+		sf::Sprite * s = new sf::Sprite(*testCharacterTexture, sf::IntRect(atoi(result[0].c_str()), atoi(result[1].c_str()), atoi(result[2].c_str()), atoi(result[3].c_str())));
+		/*testOffsetX = std::atof(result[4].c_str());
+		testOffsetY = std::atof(result[5].c_str());*/
+		//s->setScale(-1, 1);
+		s->setOrigin(atoi(result[4].c_str()), atoi(result[5].c_str()));
 		anim.push_back(s);
-		positionViewInt.clear();
+		result.clear();
 	}
 	return anim;
 }

@@ -33,8 +33,6 @@ namespace tw
 		
 		std::vector<sf::Sprite*> loadAnimation(std::string filename);
 		std::deque<std::string> positionView;
-		std::deque <std::string> positionViewTrie;
-		std::deque<int> positionViewInt;
 
 	public:
 		CharacterView(BaseCharacterModel * model);
