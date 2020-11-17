@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <Pathfinder.h>
+#include <deque>
 #include <map>
 
 namespace tw
@@ -28,10 +29,10 @@ namespace tw
 		Orientation orientation;
 		std::map<Orientation, std::map<Animation, std::vector<sf::Sprite*> > > animationsMap;
 		
-		double NbImg = -1, elsetime = 0;
-		float time;
+		double elsetime = 0;
 		
 		std::vector<sf::Sprite*> loadAnimation(std::string filename);
+		std::deque<std::string> positionView;
 
 	public:
 		CharacterView(BaseCharacterModel * model);
