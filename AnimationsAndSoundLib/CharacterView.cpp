@@ -38,76 +38,48 @@ CharacterView::CharacterView(BaseCharacterModel * model)
 std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 {
 	std::vector<sf::Sprite *> anim;
-	
-	int tabs[6] = { 0 };
-	char lignes[600] = { 0 }, ligneset[30][60] = { 0 };
-	double NbImg = -1;
-
 	sf::Texture *testCharacterTexture = getCachedTexture(filename + ".png");
-	int testOffsetX;
-	int testOffsetY;
-
 	ifstream position(filename + ".anim.exode", ios::in);
-	if (position)
-		position.get(lignes, 600, '/n');  // tant que l'on peut mettre la ligne dans "contenu"	
-	int x = 0, z = 0;
-	for (int y = 0; y < strlen(lignes); y++) {
-		if (lignes[y] != '\n') {
+	string str;
+	double NbImg = -1;
+	int testOffsetX, testOffsetY;
 
-			ligneset[z][x] = lignes[y];
-			x++;
-		}
-		else {
-			z++; x = 0;
-		}
-	}
-	for (int y = 0; y < 15; y++) {
-		if (ligneset[y][0] != '\0') {
-			NbImg++;
-		}
-		else
-			y = 15;
+	if (position){
+		while (getline(position, str))
+		positionView.push_back(str);	// tant que l'on peut mettre la ligne dans "positionView"	
+	} 	
+	for (int y = 0; y < positionView.size(); y++) {		// compte le nombre d'imagne dans le fichier
+		if (positionView[y][0] != '\0')
+			NbImg++;	
 	}
 
 	testCharacterTexture->setSmooth(true);
-
-	
+	// modifier le code pour qui sois un peut plus simple.
 	for (int i = 0; i < NbImg; i++)
 	{
-		char tab[40] = { 0 };
 		int b = 0;
-		std::vector<int> myvector;
-		for (int y = 0; y < strlen(ligneset[i]); y++) {
-			if (ligneset[i][y] != ';') {
-				tab[b] = ligneset[i][y];
+		for (int y = 0; y < positionView[i].length(); y++) {
+			if (positionView[i][y] != ';') {
+				positionViewTrie[b] = positionView[i][y];
 				b++;
 			}
 			else {
-				myvector.push_back(atof(tab));
-				for (int o = 0; o < 5; o++)
-					tab[o] = { 0 };
+				//a fini!!
+				positionViewInt.push_back(atoi(positionViewTrie.front()));
+				positionViewTrie.clear();
 				b = 0;
 			}
 		}
 		if (tab[0] != '\0') {
-			myvector.push_back(atof(tab));
+			positionViewInt.push_back(atof(tab));
 		}
-		int sum = 0;
-		while (!myvector.empty())
-		{
-			tabs[sum] = myvector.back();
-			myvector.pop_back();
-			sum++;
-		}
-		
-		sf::Sprite * s = new sf::Sprite(*testCharacterTexture, sf::IntRect(tabs[5], tabs[4], tabs[3], tabs[2]));
-		
-		testOffsetX = tabs[1];
-		testOffsetY = tabs[0];
+		sf::Sprite * s = new sf::Sprite(*testCharacterTexture, sf::IntRect(positionViewInt[0], positionViewInt[1], positionViewInt[2], positionViewInt[3]));
+		testOffsetX = positionViewInt[4];
+		testOffsetY = positionViewInt[5];
 		//s->setOrigin(testOffsetX, testOffsetY);
 		anim.push_back(s);
+		positionViewInt.clear();
 	}
-
 	return anim;
 }
 
