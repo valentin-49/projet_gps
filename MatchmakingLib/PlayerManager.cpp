@@ -13,9 +13,9 @@ std::vector<tw::Player*> tw::PlayerManager::loadPlayers()
 	int index = 1;
 	std::vector<tw::Player*> result;
 
-	// Vous devrez remplacer les données de test par des 
-	// données chargées depuis un fichier.
-	ifstream fichierTeam("C:/Users/matte/OneDrive/Bureau/TacticalWar/assets/equipe.txt");
+	// Vous devrez remplacer les donnÃ©es de test par des 
+	// donnÃ©es chargÃ©es depuis un fichier.
+	ifstream fichierTeam("../assets/equipe.txt");
 
 	if (fichierTeam)
 	{
@@ -38,7 +38,7 @@ std::vector<tw::Player*> tw::PlayerManager::loadPlayers()
 
 		for (int i = 0; i < result1.size(); i++)
 		{
-			/* Enlever les '/' pour le déocupage clean.
+			/* Enlever les '/' pour le dÃ©ocupage clean.
 			if (result1[i] != '/')
 			{
 				cout << result1[i] << endl;	
@@ -63,7 +63,7 @@ tw::Match * tw::PlayerManager::getCurrentOrNextMatchForPlayer(tw::Player * p)
 	createTestMatchIfNotExists();
 
 	// TODO : Rechercher le match courant ou le prochain pour le joueur p 
-	// et le retourner. Si aucun match à venir, retourner NULL.
+	// et le retourner. Si aucun match Ã  venir, retourner NULL.
 
 	if (testMatch->getStatus() != FINISHED)
 	{
