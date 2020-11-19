@@ -119,4 +119,26 @@ sf::Sprite* CharacterView::getImageToDraw()
 void CharacterView::update(float deltatime)
 {
 	elsetime += deltatime;
+
+	BaseCharacterModel * m = getModel();
+	if (m->hasTargetPosition())
+	{
+		if (m->getTargetX() > m->getCurrentX())
+		{
+			orientation = Orientation::BOTTOM_RIGHT;
+		}
+		else if (m->getTargetX() < m->getCurrentX())
+		{
+			//orientation = Orientation::TOP_LEFT;
+		}
+
+		if (m->getTargetY() > m->getCurrentY())
+		{
+			orientation = Orientation::BOTTOM_LEFT;
+		}
+		else if (m->getTargetY() < m->getCurrentY())
+		{
+			//orientation = Orientation::TOP_RIGHT;
+		}
+	}
 }
