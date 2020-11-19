@@ -8,7 +8,8 @@ using namespace tw;
 
 IsometricRenderer::IsometricRenderer(sf::RenderWindow * window)
 {
-
+	hasFocus = true;
+	forcedFocus = false;
 	if (!textureGrass.loadFromFile("assets/tiles/Grass_01.png")) { std::cout << "Impossible de charger Grass texture" << std::endl; }
 	if (!textureWater.loadFromFile("assets/tiles/Water_01.png")) { std::cout << "Impossible de charger Water texture" << std::endl; }
 	if (!textureStone.loadFromFile("assets/tiles/Stone_02.png")) { std::cout << "Impossible de charger Stone texture" << std::endl; }
@@ -31,6 +32,18 @@ void IsometricRenderer::manageEvents(Environment * environment, std::vector<Base
 		// check the type of the event...
 		switch (e.type)
 		{
+		/*
+		case sf::Event::LostFocus:
+			std::cout << "Lost focus" << std::endl;
+			hasFocus = false;
+			break;
+
+		case sf::Event::GainedFocus:
+			std::cout << "Gain focus" << std::endl;
+			hasFocus = true;
+			
+			break;
+		*/
 			// window closed
 		case sf::Event::Closed:
 			window->close();
@@ -54,7 +67,8 @@ void IsometricRenderer::manageEvents(Environment * environment, std::vector<Base
 					&&
 					cellY >= 0 && cellY < environment->getHeight())
 				{
-					notifyCellClicked(cellX, cellY);
+					if(hasFocus)
+						notifyCellClicked(cellX, cellY);
 				}
 			}
 			break;
@@ -64,16 +78,41 @@ void IsometricRenderer::manageEvents(Environment * environment, std::vector<Base
 		}
 	}
 
+	// Gestion du focus :
+	if (!forcedFocus)
+	{
+		if (window->hasFocus())
+		{
+			if (!hasFocus)
+			{
+				hasFocus = true;
+				std::cout << "Gain focus" << std::endl;
+			}
+		}
+		else
+		{
+			if (hasFocus)
+			{
+				hasFocus = false;
+				std::cout << "Lost focus" << std::endl;
+			}
+		}
+	}
+
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i position = sf::Mouse::getPosition(*window);
-		int cellX = position.x / 64;
-		int cellY = position.y / 64;
-		if (cellX >= 0 && cellX < environment->getWidth()
-			&&
-			cellY >= 0 && cellY < environment->getHeight())
+		if (position.x >= 0 && position.y >= 0)
 		{
-			notifyCellMouseDown(cellX, cellY);
+			int cellX = position.x / 64;
+			int cellY = position.y / 64;
+			if (cellX >= 0 && cellX < environment->getWidth()
+				&&
+				cellY >= 0 && cellY < environment->getHeight())
+			{
+				if (hasFocus)
+					notifyCellMouseDown(cellX, cellY);
+			}
 		}
 	}
 }
