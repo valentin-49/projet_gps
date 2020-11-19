@@ -127,6 +127,13 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 			int isoX = (i*120 - j*120)/2;
 			int isoY = (i*60 + j*60)/2;
 
+			sf::Color toApply = sf::Color::White;
+			if (colorator != NULL)
+			{
+				toApply = colorator->getColorForCell(cell);
+			}
+
+			spriteToDraw.setColor(toApply);
 			spriteToDraw.setScale(0.05, 0.05);
 			spriteToDraw.setPosition(borderX+isoX, borderY+isoY); 
 			window->draw(spriteToDraw);
