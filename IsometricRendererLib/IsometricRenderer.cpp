@@ -118,7 +118,7 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 				//borderY = -3035 * 0.05;
 
 				spriteToDraw = spriteStone;
-				borderY = -558 * 0.05;
+				borderY = -590 * 0.05;
 				borderX = -202 * 0.05;
 
 			}
