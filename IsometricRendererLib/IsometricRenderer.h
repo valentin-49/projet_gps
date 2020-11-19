@@ -21,6 +21,11 @@ namespace tw
 		CharacterView & getCharacterView(BaseCharacterModel * model);
 
 		void manageEvents(Environment * environment, std::vector<BaseCharacterModel*> & characters);
+		sf::Texture textureGrass;
+		sf::Texture textureWater;
+		sf::Texture textureStone;
+		sf::Texture textureTree;
+
 
 	public:
 		IsometricRenderer(sf::RenderWindow * window);
