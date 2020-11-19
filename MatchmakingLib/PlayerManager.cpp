@@ -5,12 +5,6 @@
 #include <iostream>
 #include <deque>
 
-struct user {
-	char login[20];
-	char password[20];
-	int team;
-};
-
 using namespace std;
 
 tw::Match * tw::PlayerManager::testMatch = NULL;
