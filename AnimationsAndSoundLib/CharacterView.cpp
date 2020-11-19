@@ -31,8 +31,11 @@ sf::Texture* CharacterView::getCachedTexture(std::string path)
 CharacterView::CharacterView(BaseCharacterModel * model)
 	: AbstractCharacterView<sf::Sprite*>(model)
 {
-	orientation = Orientation::BOTTOM_RIGHT;
+	orientation = Orientation::TOP_RIGHT;
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "bottomright-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "bottomright-sheet");
+	animationsMap[Orientation::TOP_RIGHT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "top-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "top-sheet");
 
 }
 
@@ -42,9 +45,8 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 	sf::Texture *testCharacterTexture = getCachedTexture(filename + ".png");
 	ifstream position(filename + ".anim.exode", ios::in);
 	string str;
-	double NbImg = -1;
+	int NbImg = -1;
 	int testOffsetX, testOffsetY;
-
 	if (position){
 		while (getline(position, str))
 			positionView.push_back(str);	// tant que l'on peut mettre la ligne dans "positionView"	
@@ -62,8 +64,10 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 		sf::Sprite * s = new sf::Sprite(*testCharacterTexture, sf::IntRect(atoi(result[0].c_str()), atoi(result[1].c_str()), atoi(result[2].c_str()), atoi(result[3].c_str())));
 		/*testOffsetX = std::atof(result[4].c_str());
 		testOffsetY = std::atof(result[5].c_str());*/
-		//s->setScale(-1, 1);
+		
 		s->setOrigin(atoi(result[4].c_str()), atoi(result[5].c_str()));
+	
+		//s->setScale(-1, 1);
 		anim.push_back(s);
 		result.clear();
 	}
