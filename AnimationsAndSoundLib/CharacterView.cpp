@@ -40,6 +40,12 @@ CharacterView::CharacterView(BaseCharacterModel * model)
 	animationsMap[Orientation::BOTTOM_LEFT][Animation::IDLE] = loadAnimation(model->getGraphicsPath() + "bottomright-static-sheet");
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "bottomright-die-sheet");
 	animationsMap[Orientation::BOTTOM_LEFT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "bottomright-die-sheet");
+	animationsMap[Orientation::BOTTOM_RIGHT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "bottomright-magical_attack-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "bottomright-magical_attack-sheet");
+	animationsMap[Orientation::BOTTOM_RIGHT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "bottomright-physical_attack-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "bottomright-physical_attack-sheet");
+	animationsMap[Orientation::BOTTOM_RIGHT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "bottomright-take_damage-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "bottomright-take_damage-sheet");
 
 }
 
