@@ -27,6 +27,7 @@ namespace tw
 		static sf::Texture* getCachedTexture(std::string path);
 
 		Orientation orientation;
+		Animation animation;
 		std::map<Orientation, std::map<Animation, std::vector<sf::Sprite*> > > animationsMap;
 		
 		double elsetime = 0;
@@ -39,7 +40,9 @@ namespace tw
 		virtual ~CharacterView();
 		virtual sf::Sprite * getImageToDraw();
 		virtual void update(float deltatime);
-
+		void setAnimation(Animation animation) {
+			this->animation = animation;
+		}
 		void setOrientation(Orientation orientation)
 		{
 			this->orientation = orientation;
