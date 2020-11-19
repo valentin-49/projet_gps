@@ -126,16 +126,18 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 			{
 				//color = sf::Color::White;
 				spriteToDraw = spriteGrass;
-				borderX = -260 * 0.05;
-				borderY = -194 * 0.05;
+				borderX = -128 * 0.05;
+				borderY = -310 * 0.05;
 			}
 			else
 			{
 				//color = sf::Color::Black;
-				spriteToDraw = spriteWater;
+				
 				borderX = -194 * 0.05;
 				borderY = -260 * 0.05;
+				spriteToDraw = spriteWater;
 			}
+
 			//spriteToDraw = spriteTree;
 			int isoX = (i*120 - j*120)/2;
 			int isoY = (i*60 + j*60)/2;
