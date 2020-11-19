@@ -14,6 +14,11 @@ IsometricRenderer::IsometricRenderer(sf::RenderWindow * window)
 	if (!textureStone.loadFromFile("assets/tiles/Stone_02.png")) { std::cout << "Impossible de charger Stone texture" << std::endl; }
 	if (!textureTree.loadFromFile("assets/tiles/Tree_01.png")) { std::cout << "Impossible de charger Tree texture" << std::endl; }
 
+	textureGrass.setSmooth(true);
+	textureWater.setSmooth(true);
+	textureStone.setSmooth(true);
+	textureTree.setSmooth(true);
+
 	this->window = window;
 	this->colorator = NULL;
 }
@@ -134,7 +139,11 @@ void IsometricRenderer::render(Environment* environment, std::vector<BaseCharact
 		CharacterView & v = getCharacterView(m);
 		v.update(deltatime);
 		sf::Sprite * s = v.getImageToDraw();
-		s->setPosition(m->getInterpolatedX() * 64, m->getInterpolatedY() * 64);
+
+		int isoX = (m->getInterpolatedX() * 120 - m->getInterpolatedY() * 120) / 2;
+		int isoY = (m->getInterpolatedX() * 60 + m->getInterpolatedY() * 60) / 2;
+
+		s->setPosition(isoX + 60, isoY - 7);
 	
 
 		sf::IntRect rect = s->getTextureRect();

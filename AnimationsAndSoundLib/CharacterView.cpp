@@ -35,27 +35,42 @@ CharacterView::CharacterView(BaseCharacterModel * model)
 	orientation = Orientation::BOTTOM_RIGHT;
 	animation = Animation::RUN;
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "bottomright-sheet");
-	animationsMap[Orientation::BOTTOM_LEFT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "bottomright-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "bottomright-sheet", true);
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::IDLE] = loadAnimation(model->getGraphicsPath() + "bottomright-static-sheet");
-	animationsMap[Orientation::BOTTOM_LEFT][Animation::IDLE] = loadAnimation(model->getGraphicsPath() + "bottomright-static-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::IDLE] = loadAnimation(model->getGraphicsPath() + "bottomright-static-sheet", true);
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "bottomright-die-sheet");
-	animationsMap[Orientation::BOTTOM_LEFT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "bottomright-die-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "bottomright-die-sheet", true);
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "bottomright-magical_attack-sheet");
-	animationsMap[Orientation::BOTTOM_LEFT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "bottomright-magical_attack-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "bottomright-magical_attack-sheet", true);
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "bottomright-physical_attack-sheet");
-	animationsMap[Orientation::BOTTOM_LEFT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "bottomright-physical_attack-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "bottomright-physical_attack-sheet", true);
 	animationsMap[Orientation::BOTTOM_RIGHT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "bottomright-take_damage-sheet");
-	animationsMap[Orientation::BOTTOM_LEFT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "bottomright-take_damage-sheet");
+	animationsMap[Orientation::BOTTOM_LEFT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "bottomright-take_damage-sheet", true);
 
+
+
+	animationsMap[Orientation::TOP_RIGHT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "topright-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::RUN] = loadAnimation(model->getGraphicsPath() + "topright-sheet", true);
+	animationsMap[Orientation::TOP_RIGHT][Animation::IDLE] = loadAnimation(model->getGraphicsPath() + "topright-static-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::IDLE] = loadAnimation(model->getGraphicsPath() + "topright-static-sheet", true);
+	animationsMap[Orientation::TOP_RIGHT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "topright-die-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::DIE] = loadAnimation(model->getGraphicsPath() + "topright-die-sheet", true);
+	animationsMap[Orientation::TOP_RIGHT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "topright-magical_attack-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::ATTACK1] = loadAnimation(model->getGraphicsPath() + "topright-magical_attack-sheet", true);
+	animationsMap[Orientation::TOP_RIGHT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "topright-physical_attack-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::ATTACK2] = loadAnimation(model->getGraphicsPath() + "topright-physical_attack-sheet", true);
+	animationsMap[Orientation::TOP_RIGHT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "topright-take_damage-sheet");
+	animationsMap[Orientation::TOP_LEFT][Animation::TAKE_DAMAGE] = loadAnimation(model->getGraphicsPath() + "topright-take_damage-sheet", true);
 }
 
-std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
+std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename, bool flip)
 {
 	std::vector<sf::Sprite *> anim;
 	sf::Texture *testCharacterTexture = getCachedTexture(filename + ".png");
 	sf::FileInputStream stream;
 	string str;
-	int NbImg = -1;
+	std::deque<std::string> positionView;
+	int NbImg = 0;
 	int testOffsetX, testOffsetY;
 
 		if (stream.open(filename + ".anim.exode")) {
@@ -87,8 +102,8 @@ std::vector<sf::Sprite*> CharacterView::loadAnimation(std::string filename)
 			/*testOffsetX = std::atof(result[4].c_str());
 			testOffsetY = std::atof(result[5].c_str());*/
 
-			//s->setOrigin(atoi(result[4].c_str()), atoi(result[5].c_str()));
-			if(orientation == Orientation::BOTTOM_LEFT)
+			s->setOrigin(atoi(result[4].c_str()), atoi(result[5].c_str()));
+			if(flip)
 				s->setScale(-1, 1);
 			anim.push_back(s);
 			result.clear();
@@ -118,7 +133,7 @@ sf::Sprite* CharacterView::getImageToDraw()
 
 void CharacterView::update(float deltatime)
 {
-	elsetime += deltatime;
+	elsetime += deltatime * 2;
 
 	BaseCharacterModel * m = getModel();
 	if (m->hasTargetPosition())
@@ -129,7 +144,7 @@ void CharacterView::update(float deltatime)
 		}
 		else if (m->getTargetX() < m->getCurrentX())
 		{
-			//orientation = Orientation::TOP_LEFT;
+			orientation = Orientation::TOP_LEFT;
 		}
 
 		if (m->getTargetY() > m->getCurrentY())
@@ -138,7 +153,7 @@ void CharacterView::update(float deltatime)
 		}
 		else if (m->getTargetY() < m->getCurrentY())
 		{
-			//orientation = Orientation::TOP_RIGHT;
+			orientation = Orientation::TOP_RIGHT;
 		}
 	}
 }

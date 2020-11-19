@@ -32,8 +32,7 @@ namespace tw
 		
 		double elsetime = 0;
 		
-		std::vector<sf::Sprite*> loadAnimation(std::string filename);
-		std::deque<std::string> positionView;
+		std::vector<sf::Sprite*> loadAnimation(std::string filename, bool flip = false);
 
 	public:
 		CharacterView(BaseCharacterModel * model);
